@@ -1,0 +1,115 @@
+
+
+
+
+    /************/
+   /*          */
+  /*   Base   */
+ /*          */
+/************/
+
+
+
+html, body {
+	
+	width:  100%;
+	height: 100%;
+}
+body {
+	
+	background-color: #000;
+	vertical-align: top;
+	overflow: hidden;
+}
+
+
+
+body, h1, h2 {
+
+	margin:  0;
+	border:  0;
+	padding: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:   12px;
+	line-height: 15px;
+	color: rgba( 255, 255, 255, 0.7 );
+}
+a {
+
+	color: rgba( 255, 255, 255, 0.7 );
+	text-decoration: none;
+	border-bottom: 1px dotted #FFF;
+}
+a:hover {
+
+	color: #FFF;
+	border-bottom: 1px solid #FFF;
+}
+table, td, tr {
+
+	margin: 0;
+	border: none;
+	border-collapse: collapse;
+	padding: 0;
+}
+.pad {
+
+	padding: 8px;
+}
+.graydient {
+
+	/* http://www.colorzilla.com/gradient-editor/ */
+	background: #000; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  #444 0%, #000000 90%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#444), color-stop(90%,#000000)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  #444 0%,#000000 90%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  #444 0%,#000000 90%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  #444 0%,#000000 90%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  #444 0%,#000000 90%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.heroicRed {
+
+	background-color: #F00;
+}
+
+
+
+#container{
+	width:  100%;
+	height: 100%;
+}
+
+#fail{
+
+	display: none;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -250px;
+	width: 500px;
+	height: 200px;
+	overflow: hidden;
+
+}
+
+#fail > h1 { font-size: 6em; line-height: 2em; }
+#fail > h2 { font-size: 3em; line-height: 1em; }
+
+
+@media not screen and (-webkit-transform-3d)
+{
+	#container{
+		visibility: hidden;
+	}
+	#fail{
+		display: block;
+	}
+}
+
+
+
+
+
