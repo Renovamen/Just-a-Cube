@@ -84,7 +84,4 @@ $(document).ready( function(){
 	// motion.range.z = 0;
 	// motion.paused = false;				// disables the effect
 
-	cube.twist('f')
-	console.log(cube.twistQueue.history)
-
 })
