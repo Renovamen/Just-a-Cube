@@ -5,83 +5,99 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
 		<meta name="description" content="Rubik’s Cube">
 		<meta name="keywords" content="Erno Rubik’s Cube">
-
-
-
-		<link rel="stylesheet" type="text/css" href="src/styles/cube.css">
-		<link rel="stylesheet" type="text/css" href="examples/basic/styles/base.css">
 		<link rel="icon" type="image/png" href="src/media/cube.png">
+
+		<!------ CSS ------>
+		<link rel="stylesheet" type="text/css" href="src/css/cube.css">
+		<link rel="stylesheet" type="text/css" href="cube/css/style.css">
+
 
 
 		<title>Cuber</title>
 
-		<script charset="utf-8" src="src/scripts/vendor/tween.min.js"></script>
+		<script charset="utf-8" src="src/js/vendor/tween.min.js"></script>
 
 
 		<!-- cube source code -->
 
 
 			<!--  Three.js  -->
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/Three.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/core/EventDispatcher.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Math.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Quaternion.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Vector2.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Vector3.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Box3.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Sphere.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Euler.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Matrix3.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Matrix4.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/core/Object3D.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/cameras/Camera.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/cameras/PerspectiveCamera.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Ray.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/threejs/src/math/Plane.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/Three.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/core/EventDispatcher.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Math.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Quaternion.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Vector2.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Vector3.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Box3.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Sphere.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Euler.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Matrix3.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Matrix4.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/core/Object3D.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/cameras/Camera.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/cameras/PerspectiveCamera.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Ray.js"></script>
+			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Plane.js"></script>
 
 
 			<!--  Here are the Cube guts. Enjoy.  -->
-			<script charset="utf-8" src="src/scripts/ERNO.js"></script>
-			<script charset="utf-8" src="src/scripts/vendor/CSS3DRenderer.js"></script>
-			<script charset="utf-8" src="src/scripts/utils/utils.js"></script>
-			<script charset="utf-8" src="src/scripts/utils/Number.js"></script>
-			<script charset="utf-8" src="src/scripts/utils/String.js"></script>
-			<script charset="utf-8" src="src/scripts/utils/Array.js"></script>
-			<script charset="utf-8" src="src/scripts/colors.js"></script>
-			<script charset="utf-8" src="src/scripts/directions.js"></script>
-			<script charset="utf-8" src="src/scripts/queues.js"></script>
-			<script charset="utf-8" src="src/scripts/twists.js"></script>
-			<script charset="utf-8" src="src/scripts/cubelets.js"></script>
-			<script charset="utf-8" src="src/scripts/groups.js"></script>
-			<script charset="utf-8" src="src/scripts/slices.js"></script>
-			<script charset="utf-8" src="src/scripts/folds.js"></script>
-			<script charset="utf-8" src="src/scripts/projector.js"></script>
-			<script charset="utf-8" src="src/scripts/interaction.js"></script>
-			<script charset="utf-8" src="src/scripts/controls.js"></script>
-			<script charset="utf-8" src="src/scripts/cubes.js"></script>
-			<script charset="utf-8" src="src/scripts/solvers.js"></script>
-			<script charset="utf-8" src="src/scripts/renderer.js"></script>
+			<script charset="utf-8" src="src/js/ERNO.js"></script>
+			<script charset="utf-8" src="src/js/vendor/CSS3DRenderer.js"></script>
+			<script charset="utf-8" src="src/js/utils/utils.js"></script>
+			<script charset="utf-8" src="src/js/utils/Number.js"></script>
+			<script charset="utf-8" src="src/js/utils/String.js"></script>
+			<script charset="utf-8" src="src/js/utils/Array.js"></script>
+			<script charset="utf-8" src="src/js/colors.js"></script>
+			<script charset="utf-8" src="src/js/directions.js"></script>
+			<script charset="utf-8" src="src/js/queues.js"></script>
+			<script charset="utf-8" src="src/js/twists.js"></script>
+			<script charset="utf-8" src="src/js/cubelets.js"></script>
+			<script charset="utf-8" src="src/js/groups.js"></script>
+			<script charset="utf-8" src="src/js/slices.js"></script>
+			<script charset="utf-8" src="src/js/folds.js"></script>
+			<script charset="utf-8" src="src/js/projector.js"></script>
+			<script charset="utf-8" src="src/js/interaction.js"></script>
+			<script charset="utf-8" src="src/js/controls.js"></script>
+			<script charset="utf-8" src="src/js/cubes.js"></script>
+			<script charset="utf-8" src="src/js/solvers.js"></script>
+			<script charset="utf-8" src="src/js/renderer.js"></script>
 
 
 
 		<!-- implementation -->	
-
-
-		<script charset="utf-8" src="examples/basic/scripts/jquery.js"></script>
-		<script charset="utf-8" src="src/scripts/extras/renderers/iecss3d.js"></script>
-		<script charset="utf-8" src="src/scripts/extras/renderers/ierenderer.js"></script>
-		<script charset="utf-8" src="src/scripts/extras/controls/locked.js"></script>
-		<script charset="utf-8" src="src/scripts/extras/deviceMotion.js"></script>
-		<script charset="utf-8" src="examples/basic/scripts/main.js"></script>		
-
-
-
+		<script charset="utf-8" src="src/js/jquery-3.4.0.min.js"></script>
+		<script charset="utf-8" src="src/js/extras/renderers/iecss3d.js"></script>
+		<script charset="utf-8" src="src/js/extras/renderers/ierenderer.js"></script>
+		<script charset="utf-8" src="src/js/extras/controls/locked.js"></script>
+		<script charset="utf-8" src="src/js/extras/deviceMotion.js"></script>
+		
+		<script charset="utf-8" src="cube/js/main.js"></script>		
+		<script charset="utf-8" src="cube/js/solver.js"></script>
+		
+		<!-- plugin -->	
+		<script type="text/javascript" src="cube/js/typewriting.js"></script>
 	</head>
+	
 	<body class="graydient" >
-		<div id="container" ></div>
-		<div id="fail">
-			<h1>Sorry,</h1>
-			<h2>Cubers broken</h2>
+		<div class="solve">
+			<figure onclick="Solve()">
+				<div>
+					<span class="face">还原</span>
+					<span class="face">底部十字</span>
+				</div>
+			</figure>
+			<div class="solve-step">
+				<div class="terminal"></div>
+			</div>
 		</div>
+		<div id="container" ></div>
 	</body>
 </html>
+
+<script>
+
+function Solve()
+{
+	cube.solve();
+}
+</script>
