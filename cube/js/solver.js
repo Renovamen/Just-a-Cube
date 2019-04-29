@@ -228,7 +228,7 @@ solver.logic = function(cube)
 	};
 
 	//  --------------- 调整单个底棱块  --------------- 
-	function FIRST_LAYER_CROSS_SINGLE(block_pos, block_color)
+	function FIRST_LAYER_EDGES_SINGLE(block_pos, block_color)
 	{
 		var exp = '', exp_log = '', s;
 		for(var i = 0; i < 7; i++)
@@ -277,15 +277,15 @@ solver.logic = function(cube)
 		return 'First Layer Cross Single Error: ' + exp_log;
 	};
 
-    // --------------- 底棱归位 | COMPLETE THE FIRST LAYER CROSS ---------------
-	function FIRST_LAYER_CROSS()
+    // --------------- 底棱归位 | COMPLETE THE FIRST LAYER EDGES ---------------
+	function FIRST_LAYER_EDGES()
 	{
-		console.log('------------ 第一步：底棱归位 | COMPLETE THE FIRST LAYER CROSS ------------');
+		console.log('------------ 第一步：底棱归位 | COMPLETE THE FIRST LAYER EDGES ------------');
 		var order = '';
-		order += FIRST_LAYER_CROSS_SINGLE('dl', 'wo');
-		order += FIRST_LAYER_CROSS_SINGLE('df', 'wb');
-		order += FIRST_LAYER_CROSS_SINGLE('dr', 'wr');
-		order += FIRST_LAYER_CROSS_SINGLE('db', 'wg');
+		order += FIRST_LAYER_EDGES_SINGLE('dl', 'wo');
+		order += FIRST_LAYER_EDGES_SINGLE('df', 'wb');
+		order += FIRST_LAYER_EDGES_SINGLE('dr', 'wr');
+		order += FIRST_LAYER_EDGES_SINGLE('db', 'wg');
 		return order;
 	};
 
@@ -297,16 +297,16 @@ solver.logic = function(cube)
 
 	// ----- 顶角归位（位置） | COMPLETE THE THIRD LAYER CORNERS (POSITION) -----
 
-	// ----- 顶角归位（面位） | COMPLETE THE THIRD LAYER CORNERS (FACE) -----
+	// ----- 顶角归位（方向） | COMPLETE THE THIRD LAYER CORNERS (ORIENT) -----
 
-	// --------------- 顶棱归位 | COMPLETE THE THIRD LAYER CROSS --------------- 
+	// --------------- 顶棱归位 | COMPLETE THE THIRD LAYER EDGES --------------- 
 	
 
 	// 返回魔方复原步骤
     function Solve_Cube()
     {
 		var solve_order = '';
-		solve_order += FIRST_LAYER_CROSS();
+		solve_order += FIRST_LAYER_EDGES();
 		return Compress(solve_order);
 	};
 
