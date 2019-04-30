@@ -14,15 +14,15 @@ body {
 }
 
 #container{
-	width:  75%;
+	width:  59%;
 	height: 100%;
-	float: right;
+	float: left;
 }
 
 /* ------------------- Button ------------------- */
 
 .solve{
-	width:  24%;
+	width:  20%;
 	height: 100%;
 	float: left;
 }
@@ -30,8 +30,8 @@ body {
 figure {
 	width: 200px;
 	height: 60px;
-	margin-top: 70px;
-	margin-left: 48%;
+	margin-top: 50%;
+	margin-left: 50%;
 	cursor: pointer;
 	perspective: 500px;
 	-webkit-perspective: 500px;
@@ -55,6 +55,7 @@ span.face {
 	position: absolute;
 	box-sizing: border-box;
 	border: 3px solid #fff;
+	border-radius: 5px;
 	font-family: 'Source Sans Pro',sans-serif;
 	line-height: 30px;
 	font-size: 14pt;
@@ -76,24 +77,94 @@ span.face:nth-child(2) {
 }
 
 
-.solve .solve-step{
-  width: 100%;
-  height: 30%;
+.solve-step{
+  width: 50%;
+  height: 10%;
   border-radius: 16px;
   border: 1px solid #ffffff;
-  margin: auto 23%;
+  margin: auto auto;
 }
 
-.solve .solve-step .terminal {
-	width: 21%;
+/* ------------------- typewritting terminal ------------------- */
+.solve-step .terminal {
+	width: 45%;
 	font-size: 16px;
-	margin: 2%;
+	margin: 1.3%;
 	color: #ffffff;
 	letter-spacing: 2px;
 	position: absolute;
 }
 
-.solve .solve-step .terminal::before {
+.solve-step .terminal::before {
 	content: ">";
 	margin-right: 10px;
+}
+
+/* ------------------- twist button ------------------- */
+.twist{
+	width:  20%;
+	height: 100%;
+	margin-top: 5%;
+	float: left;
+}
+
+.twist h1{
+	margin-top: 0;
+	margin-left: 27%;
+	color: #ffffff;
+	font-size: 20px;
+}
+
+.twist button{
+	margin-top: 10%;
+	margin-left: 20px;
+	width:  80px;
+	height: 40px;
+	border-radius: 10px;
+	border: 2px solid;
+	font-size: 16px;
+	background: none;
+	outline: none;
+	cursor: pointer;
+	-webkit-transition: all .5s;
+	transition: all .5s;
+}
+
+.twist .twist-btn{
+	color: #ffffff;
+	border-color: #ffffff;
+	overflow: hidden;
+	position: relative;
+}
+
+.twist .twist-btn:before, .twist-btn:after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	height: 100%;
+	width: 0;
+	top: 0;
+	background-color: #ffffff;
+	-webkit-transition: all .4s;
+	transition: all .4s;
+}
+  
+.twist .twist-btn:before {
+	left: -15px;
+	-webkit-transform: skew(-45deg, 0);
+	transform: skew(-45deg, 0);
+}
+  
+.twist .twist-btn:after{
+	right: -15px;
+	-webkit-transform: skew(-45deg, 0);
+	transform: skew(-45deg, 0);
+}
+
+.twist .twist-btn:hover {
+	color: #27323A;
+}
+
+.twist .twist-btn:hover:before, .twist-btn:hover:after {
+	width: 80%;
 }

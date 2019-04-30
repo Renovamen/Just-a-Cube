@@ -72,4 +72,6 @@ The first step (complete the first layer edges | 底部棱块归位)  of Layer B
 
 
 
+#### CFOP
+
 #### Two-Phase Algorithm

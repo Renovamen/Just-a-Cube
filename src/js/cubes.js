@@ -559,6 +559,7 @@ ERNO.extend( ERNO.Cube.prototype, {
                 //	random moves from this.shuffleMethod.
 		sequence = sequence || '';
 
+		var shuffle_seq = ''
 
 		var moves = this.shuffleMethod.slice(),
 			move, inverseOfLastMove = new ERNO.Twist(), allowedMoves,
@@ -597,7 +598,7 @@ ERNO.extend( ERNO.Cube.prototype, {
 
 			//	execute the shuffle
 			this.twist( move );
-
+			shuffle_seq += move.command
 
 			//	Store a reference to the reverse of the move ( a twist that undoes the shuffle )
 			inverseOfLastMove = move.getInverse();
@@ -608,8 +609,7 @@ ERNO.extend( ERNO.Cube.prototype, {
 		//	By stashing the last move in our shuffle sequence, we can
 		// 	later check if the shuffling is complete
 		this.finalShuffle = move;
-
-
+		return shuffle_seq
 	},
 
 

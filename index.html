@@ -79,6 +79,9 @@
 	</head>
 	
 	<body class="graydient" >
+		<div class="solve-step">
+			<div class="terminal"></div>
+		</div>
 		<div class="solve">
 			<figure onclick="Solve()">
 				<div>
@@ -86,9 +89,6 @@
 					<span class="face">底部十字</span>
 				</div>
 			</figure>
-			<div class="solve-step">
-				<div class="terminal"></div>
-			</div>
 			<figure onclick="Shuffle()">
 				<div>
 					<span class="face">打乱</span>
@@ -97,6 +97,21 @@
 			</figure>
 		</div>
 		<div id="container" ></div>
+		<div class="twist">
+			<h1>旋转指令</h1>
+			<button class="twist-btn" onclick="cube.twist('U')">U</button>
+			<button class="twist-btn" onclick="cube.twist('u')">u</button><br>
+			<button class="twist-btn" onclick="cube.twist('D')">D</button>
+			<button class="twist-btn" onclick="cube.twist('d')">d</button><br>
+			<button class="twist-btn" onclick="cube.twist('F')">F</button>
+			<button class="twist-btn" onclick="cube.twist('f')">f</button><br>
+			<button class="twist-btn" onclick="cube.twist('B')">B</button>
+			<button class="twist-btn" onclick="cube.twist('b')">b</button><br>
+			<button class="twist-btn" onclick="cube.twist('L')">L</button>
+			<button class="twist-btn" onclick="cube.twist('l')">l</button><br>
+			<button class="twist-btn" onclick="cube.twist('R')">R</button>
+			<button class="twist-btn" onclick="cube.twist('r')">r</button>
+		</div>
 	</body>
 </html>
 
@@ -109,6 +124,9 @@ function Solve()
 
 function Shuffle()
 {
-	cube.shuffle();
+	var shuffle_seq = cube.shuffle();
+	$('.terminal').typewriting("打乱：" + shuffle_seq, {
+		"cursor_color": "#ffffff",
+	})
 }
 </script>
