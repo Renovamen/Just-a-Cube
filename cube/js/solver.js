@@ -2,31 +2,13 @@
 window.solver = new ERNO.Solver();
 solver.logic = function(cube)
 {
-    // ---------------------- 魔方目前的状态 ----------------------
-	var cubeState = {
-		d:   'w',   u:   'y',   l:   'o',   f:   'b',   r:   'r',   b:   'g',
-		dl:  'wo',  df:  'wb',  dr:  'wr',  db:  'wg',
-		ul:  'yo',  uf:  'yb',  ur:  'yr',  ub:  'yg',
-		lf:  'ob',  fr:  'br',  rb:  'rg',  bl:  'go',
-		dlf: 'wob', dfr: 'wbr', drb: 'wrg', dbl: 'wgo',
-		ulf: 'yob', ufr: 'ybr', urb: 'yrg', ubl: 'ygo'
-	};
-
+    // ---------------------- 魔方状态 ----------------------
+	var cubeState = {};
 	var Next_Face = {l:'f',f:'r',r:'b',b:'l'};
 	var Pre_Face = {l:'b',b:'r',r:'f',f:'l'};
     var Next_Color = {o:'b',b:'r',r:'g',g:'o'};
 
-    var order_list = ''
-    for(order of cube.twistQueue.history)
-    {
-        if(order.command == 'X' || order.command == 'Y' || order.command == 'Z'
-        || order.command == 'x' || order.command == 'y' || order.command == 'z')continue;
-		
-		order_list += order.command
-	}
-	console.log(order_list)
-    changeState(order_list)
-
+	getCubeState()
 	var solve_step = Solve_Cube();
 	console.log(solve_step)
 	
@@ -44,6 +26,40 @@ solver.logic = function(cube)
 		})
 	}
 	console.log('The first layer cross is already completed.')
+
+	// ------------------ 获得魔方当前状态 ------------------
+	function getCubeState()
+	{
+		cubeState = {
+			d:   'w',   u:   'y',   l:   'o',   f:   'b',   r:   'r',   b:   'g',
+			
+			dl: cube.down.south.down.color.name[0] + cube.down.south.left.color.name[0],
+			df: cube.down.west.down.color.name[0] + cube.down.west.front.color.name[0],
+			dr: cube.down.north.down.color.name[0] + cube.down.north.right.color.name[0], 
+			db: cube.down.east.down.color.name[0] + cube.down.east.back.color.name[0],
+
+			ul: cube.up.west.up.color.name[0] + cube.up.west.left.color.name[0],
+			uf: cube.up.south.up.color.name[0] + cube.up.south.front.color.name[0],
+			ur: cube.up.east.up.color.name[0] + cube.up.east.right.color.name[0],
+			ub: cube.up.north.up.color.name[0] + cube.up.north.back.color.name[0],
+
+			lf: cube.front.west.left.color.name[0] + cube.front.west.front.color.name[0],  
+			fr: cube.front.east.front.color.name[0] + cube.front.east.right.color.name[0],  
+			rb: cube.back.north.right.color.name[0] + cube.back.north.back.color.name[0],
+			bl: cube.back.south.back.color.name[0] + cube.back.south.left.color.name[0],
+			
+			dlf: cube.down.southWest.down.color.name[0] + cube.down.southWest.left.color.name[0] + cube.down.southWest.front.color.name[0],
+			dfr: cube.down.northWest.down.color.name[0] + cube.down.northWest.front.color.name[0] + cube.down.northWest.right.color.name[0], 
+			drb: cube.down.northEast.down.color.name[0] + cube.down.northEast.right.color.name[0] + cube.down.northEast.back.color.name[0],
+			dbl: cube.down.southEast.down.color.name[0] + cube.down.southEast.back.color.name[0] + cube.down.southEast.left.color.name[0],
+		
+			ulf: cube.up.southWest.up.color.name[0] + cube.up.southWest.left.color.name[0] + cube.up.southWest.front.color.name[0],
+			ufr: cube.up.southEast.up.color.name[0] + cube.up.southEast.front.color.name[0] + cube.up.southEast.right.color.name[0],
+			ubl: cube.up.northWest.up.color.name[0] + cube.up.northWest.back.color.name[0] + cube.up.northWest.left.color.name[0],
+			urb: cube.up.northEast.up.color.name[0] + cube.up.northEast.right.color.name[0] + cube.up.northEast.back.color.name[0],
+		}
+	}
+
 
 	// ------------------- 模拟魔方按解法转动后的状态变化 ------------------- 
     
@@ -166,37 +182,37 @@ solver.logic = function(cube)
 					Twist_D();
 					break;
 				case 'd': 	//d: Down 面逆时针旋转 90°
-					Twist_D(), Twist_D(), Twist_D();
+					Twist_D(); Twist_D(); Twist_D();
 					break;
 				case 'U': 	//U: Up 面顺时针旋转 90°
 					Twist_U();
 					break;
 				case 'u': 	//u: Up 面逆时针旋转 90°
-					Twist_U(), Twist_U(), Twist_U();
+					Twist_U(); Twist_U(); Twist_U();
 					break;
 				case 'L': 	//L: Left 面顺时针旋转 90°
 					Twist_L();
 					break;
 				case 'l': 	//l: Left 面逆时针旋转 90°
-					Twist_L(), Twist_L(), Twist_L();
+					Twist_L(); Twist_L(); Twist_L();
 					break;
 				case 'F': 	//F: Front 面顺时针旋转 90°
 					Twist_F();
 					break;
 				case 'f': 	//f: Front 面逆时针旋转 90°
-					Twist_F(), Twist_F(), Twist_F();
+					Twist_F(); Twist_F(); Twist_F();
 					break;
 				case 'R': 	//R: Right 面顺时针旋转 90°
 					Twist_R();
 					break;
 				case 'r': 	//r - Right 面逆时针旋转 90°
-					Twist_R(), Twist_R(), Twist_R();
+					Twist_R(); Twist_R(); Twist_R();
 					break;
 				case 'B': 	//B - Back 面顺时针旋转 90°
 					Twist_B();
 					break;
 				case 'b': 	//b - Back 面逆时针旋转 90°
-					Twist_B(), Twist_B(), Twist_B();
+					Twist_B(); Twist_B(); Twist_B();
 					break;
 			}
 		}
@@ -206,19 +222,6 @@ solver.logic = function(cube)
     // ---------------------------- 层先法还原 ---------------------------- 
 
     // 查找当前要调整的棱块所在位置
-    function Edge_Pos(block_color)
-    {
-        for(var pos of Pos_List)
-        {
-            // 两个块拥有的元素是否相同（数组元素是否相同）
-            
-            var color = Block_Color(pos)
-            //console.log(color)
-            if(color.sort().toString() == block_color.sort().toString())
-                return {pos: pos, color: color};
-        }
-    }
-
 	function Block_Position(block)
 	{
         var reg = new RegExp('['+block+']{'+block.length+'}');

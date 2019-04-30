@@ -89,6 +89,12 @@
 			<div class="solve-step">
 				<div class="terminal"></div>
 			</div>
+			<figure onclick="Shuffle()">
+				<div>
+					<span class="face">打乱</span>
+					<span class="face">随机</span>
+				</div>
+			</figure>
 		</div>
 		<div id="container" ></div>
 	</body>
@@ -99,5 +105,10 @@
 function Solve()
 {
 	cube.solve();
+}
+
+function Shuffle()
+{
+	cube.shuffle();
 }
 </script>

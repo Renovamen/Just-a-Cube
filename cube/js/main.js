@@ -87,6 +87,7 @@ $(document).ready( function(){
 	
 
 	cube.twist('xY')
+	//cube.shuffle()
 	//cube.twist('d')
 	//cube.solve()
 })

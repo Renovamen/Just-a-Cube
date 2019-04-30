@@ -553,9 +553,8 @@ ERNO.extend( ERNO.Cube.prototype, {
 
 	shuffle: function( amount, sequence ){
 
-
 		//	How many times should we shuffle?
-		amount = amount || 30;
+		amount = amount || 10;
 		//	Optional sequence of moves to execute instead of picking
                 //	random moves from this.shuffleMethod.
 		sequence = sequence || '';
@@ -565,23 +564,21 @@ ERNO.extend( ERNO.Cube.prototype, {
 			move, inverseOfLastMove = new ERNO.Twist(), allowedMoves,
 			sequenceLength = sequence.length, sequenceIndex = 0;
 
-
 		//	We're shuffling the cube so we should clear any history
 		this.twistQueue.empty( true );
 		this.historyQueue.empty( true )
 
-
 		//	Create some random rotations based on our shuffle method
 		while( amount-- > 0 ){
-			if (sequence){
+			if(sequence){
 				move.set(sequence[sequenceIndex]);
 				sequenceIndex = (sequenceIndex + 1) % sequenceLength;
-			} else {
+			} 
+			else {
 
 				// Create a copy of all possible moves
 				allowedMoves = moves.split('');
 				move = new ERNO.Twist().copy( inverseOfLastMove );
-
 				//	We don't want to chose a move that reverses the last shuffle, it just looks odd,
 				//	so we should only select a move if it's a new one.
 
@@ -825,7 +822,7 @@ ERNO.extend( ERNO.Cube.prototype, {
 
 	//  Shuffle methods.
 
-	PRESERVE_LOGO: 'RrLlUuDdSsBb',             //  Preserve the logo position and rotation.
+	PRESERVE_LOGO: 'RrLlUuDdFfBb',             //  Preserve the logo position and rotation.
 	ALL_SLICES:    'RrMmLlUuEeDdFfSsBb',       //  Allow all slices to rotate.
 	EVERYTHING:    'XxRrMmLlYyUuEeDdZzFfSsBb', //  Allow all slices, and also full cube X, Y, and Z rotations.
 
