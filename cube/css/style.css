@@ -19,73 +19,30 @@ body {
 	float: left;
 }
 
-/* ------------------- Button ------------------- */
+/* ------------------- solve button ------------------- */
 
 .solve{
+	margin-top: 10%;
 	width:  20%;
 	height: 100%;
 	float: left;
 }
 
-figure {
-	width: 200px;
-	height: 60px;
-	margin-top: 50%;
-	margin-left: 50%;
-	cursor: pointer;
-	perspective: 500px;
-	-webkit-perspective: 500px;
-}
-
-figure div {
-	height: 80%;
-	transform-style: preserve-3d;
-	-webkit-transform-style: preserve-3d;
-	transition: 0.25s;
-	-webkit-transition: 0.25s;
-}
-
-figure:hover div {
-	transform: rotateX(-90deg);
-}
-
-span.face {
-	width: 80%;
-	height: 80%;
-	position: absolute;
-	box-sizing: border-box;
-	border: 3px solid #fff;
-	border-radius: 5px;
-	font-family: 'Source Sans Pro',sans-serif;
-	line-height: 30px;
-	font-size: 14pt;
-	text-align: center;
-	text-transform: uppercase;
-}
-
-span.face:nth-child(1) {
-	color: #fff;
-	transform: translate3d(0, 0, 18px);
-	-webkit-transform: translate3d(0, 0, 18px);
-}
-
-span.face:nth-child(2) {
-	color: #094b2c;
-	background: #fff;
-	transform: rotateX(90deg) translate3d(0, 0, 18px);
-	-webkit-transform: rotateX(90deg) translate3d(0, 0, 18px);
-}
-
-
-.solve-step{
-  width: 50%;
-  height: 10%;
-  border-radius: 16px;
-  border: 1px solid #ffffff;
-  margin: auto auto;
+.solve-btn{
+	width:  160px;
+	margin-top: 10%;
+	margin-left: 100px;
 }
 
 /* ------------------- typewritting terminal ------------------- */
+.solve-step{
+	width: 50%;
+	height: 10%;
+	border-radius: 16px;
+	border: 1px solid #ffffff;
+	margin: auto auto;
+}
+
 .solve-step .terminal {
 	width: 45%;
 	font-size: 16px;
@@ -110,12 +67,12 @@ span.face:nth-child(2) {
 
 .twist h1{
 	margin-top: 0;
-	margin-left: 27%;
+	margin-left: 30%;
 	color: #ffffff;
 	font-size: 20px;
 }
 
-.twist button{
+button{
 	margin-top: 10%;
 	margin-left: 20px;
 	width:  80px;
@@ -130,14 +87,14 @@ span.face:nth-child(2) {
 	transition: all .5s;
 }
 
-.twist .twist-btn{
+.btn{
 	color: #ffffff;
 	border-color: #ffffff;
 	overflow: hidden;
 	position: relative;
 }
 
-.twist .twist-btn:before, .twist-btn:after {
+.btn:before, .btn:after {
 	content: "";
 	position: absolute;
 	z-index: -1;
@@ -149,22 +106,22 @@ span.face:nth-child(2) {
 	transition: all .4s;
 }
   
-.twist .twist-btn:before {
+.btn:before {
 	left: -15px;
 	-webkit-transform: skew(-45deg, 0);
 	transform: skew(-45deg, 0);
 }
   
-.twist .twist-btn:after{
+.btn:after{
 	right: -15px;
 	-webkit-transform: skew(-45deg, 0);
 	transform: skew(-45deg, 0);
 }
 
-.twist .twist-btn:hover {
+.btn:hover {
 	color: #27323A;
 }
 
-.twist .twist-btn:hover:before, .twist-btn:hover:after {
+.btn:hover:before, .btn:hover:after {
 	width: 80%;
 }

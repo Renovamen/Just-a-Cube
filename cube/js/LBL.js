@@ -2,7 +2,7 @@
 window.solver = new ERNO.Solver();
 solver.logic = function(cube)
 {
-    // ---------------------- 魔方状态 ----------------------
+	// ---------------------- 魔方状态 ----------------------
 	var cubeState = {};
 	var Next_Face = {l:'f',f:'r',r:'b',b:'l'};
 	var Pre_Face = {l:'b',b:'r',r:'f',f:'l'};
@@ -15,13 +15,13 @@ solver.logic = function(cube)
 	if(solve_step != '')
 	{
 		cube.twist(solve_step);
-		$('.terminal').typewriting("底部十字：" + solve_step,{
+		$('.terminal').typewriting("The first layer cross: " + solve_step,{
 			"cursor_color": "#ffffff",
 		})
 	}
 	else 
 	{
-		$('.terminal').typewriting("底部十字已完成",{
+		$('.terminal').typewriting("The first layer cross is already solved.",{
 			"cursor_color": "#ffffff",
 		})
 	}
@@ -31,8 +31,13 @@ solver.logic = function(cube)
 	function getCubeState()
 	{
 		cubeState = {
-			d:   'w',   u:   'y',   l:   'o',   f:   'b',   r:   'r',   b:   'g',
-			
+			d: cubeGL.down.cubelets[4].down.color.name[0],
+			u: cubeGL.up.cubelets[4].up.color.name[0],
+			l: cubeGL.left.cubelets[4].left.color.name[0],
+			r: cubeGL.right.cubelets[4].right.color.name[0],
+			f: cubeGL.front.cubelets[4].front.color.name[0],
+			b: cubeGL.back.cubelets[4].back.color.name[0],
+
 			dl: cube.down.south.down.color.name[0] + cube.down.south.left.color.name[0],
 			df: cube.down.west.down.color.name[0] + cube.down.west.front.color.name[0],
 			dr: cube.down.north.down.color.name[0] + cube.down.north.right.color.name[0], 
@@ -58,6 +63,7 @@ solver.logic = function(cube)
 			ubl: cube.up.northWest.up.color.name[0] + cube.up.northWest.back.color.name[0] + cube.up.northWest.left.color.name[0],
 			urb: cube.up.northEast.up.color.name[0] + cube.up.northEast.right.color.name[0] + cube.up.northEast.back.color.name[0],
 		}
+		console.log(cubeState)
 	}
 
 
@@ -285,10 +291,10 @@ solver.logic = function(cube)
 	{
 		console.log('------------ 第一步：底棱归位 | COMPLETE THE FIRST LAYER EDGES ------------');
 		var order = '';
-		order += FIRST_LAYER_EDGES_SINGLE('dl', 'wo');
-		order += FIRST_LAYER_EDGES_SINGLE('df', 'wb');
-		order += FIRST_LAYER_EDGES_SINGLE('dr', 'wr');
-		order += FIRST_LAYER_EDGES_SINGLE('db', 'wg');
+		order += FIRST_LAYER_EDGES_SINGLE('dl', cubeState['d'] + cubeState['l']);
+		order += FIRST_LAYER_EDGES_SINGLE('df', cubeState['d'] + cubeState['f']);
+		order += FIRST_LAYER_EDGES_SINGLE('dr', cubeState['d'] + cubeState['r']);
+		order += FIRST_LAYER_EDGES_SINGLE('db', cubeState['d'] + cubeState['b']);
 		return order;
 	};
 

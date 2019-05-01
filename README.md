@@ -1,6 +1,6 @@
 # Just a Cube
 
-A rubik's cube solver. The cube simulator is from [Cuber](https://github.com/marklundin/cube).
+A rubik's cube solver.
 
 
 
@@ -11,6 +11,8 @@ https://renovamen.github.io/Just-a-Cube/index.html
 
 
 ## About Cube
+
+The cube simulator is from [Cuber](https://github.com/marklundin/cube).
 
 ### Face
 
@@ -52,15 +54,9 @@ u: A quarter counterclockwise turn on the Up face (-90°).
 
 
 
-## Schedule
+## Algorithm
 
-The first step (complete the first layer edges | 底部棱块归位)  of Layer By Layer (层先法) is finished now.
-
-
-
-### To-do List
-
-#### Layer By Layer
+### Layer By Layer (层先法)
 
 - [x] The First Layer Edges | 底部棱块归位
 - [ ] The First Layer Corners | 底部角块归位
@@ -72,6 +68,10 @@ The first step (complete the first layer edges | 底部棱块归位)  of Layer B
 
 
 
-#### CFOP
+### Two-Phase Algorithm
 
-#### Two-Phase Algorithm
+The JavaScript implentation of [Herbert Kociemba's two-phase algorithm](http://kociemba.org/cube.htm) is from [cube.js](https://github.com/ldez/cubejs).
+
+
+
+### CFOP

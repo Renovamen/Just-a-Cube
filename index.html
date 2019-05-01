@@ -5,77 +5,81 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
 		<meta name="description" content="Rubik’s Cube">
 		<meta name="keywords" content="Erno Rubik’s Cube">
-		<link rel="icon" type="image/png" href="src/media/cube.png">
+		<link rel="icon" type="image/png" href="lib/cuber/media/cube.png">
 
 		<!------ CSS ------>
-		<link rel="stylesheet" type="text/css" href="src/css/cube.css">
+		<link rel="stylesheet" type="text/css" href="lib/cuber/css/cube.css">
 		<link rel="stylesheet" type="text/css" href="cube/css/style.css">
 
 
 
 		<title>Cuber</title>
 
-		<script charset="utf-8" src="src/js/vendor/tween.min.js"></script>
+		<script charset="utf-8" src="lib/cuber/js/vendor/tween.min.js"></script>
 
 
 		<!-- cube source code -->
 
 
 			<!--  Three.js  -->
-			<script charset="utf-8" src="src/js/vendor/threejs/src/Three.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/core/EventDispatcher.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Math.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Quaternion.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Vector2.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Vector3.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Box3.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Sphere.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Euler.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Matrix3.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Matrix4.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/core/Object3D.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/cameras/Camera.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/cameras/PerspectiveCamera.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Ray.js"></script>
-			<script charset="utf-8" src="src/js/vendor/threejs/src/math/Plane.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/Three.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/core/EventDispatcher.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Math.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Quaternion.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Vector2.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Vector3.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Box3.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Sphere.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Euler.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Matrix3.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Matrix4.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/core/Object3D.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/cameras/Camera.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/cameras/PerspectiveCamera.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Ray.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/math/Plane.js"></script>
 
 
 			<!--  Here are the Cube guts. Enjoy.  -->
-			<script charset="utf-8" src="src/js/ERNO.js"></script>
-			<script charset="utf-8" src="src/js/vendor/CSS3DRenderer.js"></script>
-			<script charset="utf-8" src="src/js/utils/utils.js"></script>
-			<script charset="utf-8" src="src/js/utils/Number.js"></script>
-			<script charset="utf-8" src="src/js/utils/String.js"></script>
-			<script charset="utf-8" src="src/js/utils/Array.js"></script>
-			<script charset="utf-8" src="src/js/colors.js"></script>
-			<script charset="utf-8" src="src/js/directions.js"></script>
-			<script charset="utf-8" src="src/js/queues.js"></script>
-			<script charset="utf-8" src="src/js/twists.js"></script>
-			<script charset="utf-8" src="src/js/cubelets.js"></script>
-			<script charset="utf-8" src="src/js/groups.js"></script>
-			<script charset="utf-8" src="src/js/slices.js"></script>
-			<script charset="utf-8" src="src/js/folds.js"></script>
-			<script charset="utf-8" src="src/js/projector.js"></script>
-			<script charset="utf-8" src="src/js/interaction.js"></script>
-			<script charset="utf-8" src="src/js/controls.js"></script>
-			<script charset="utf-8" src="src/js/cubes.js"></script>
-			<script charset="utf-8" src="src/js/solvers.js"></script>
-			<script charset="utf-8" src="src/js/renderer.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/ERNO.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/vendor/CSS3DRenderer.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/utils/utils.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/utils/Number.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/utils/String.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/utils/Array.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/colors.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/directions.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/queues.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/twists.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/cubelets.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/groups.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/slices.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/folds.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/projector.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/interaction.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/controls.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/cubes.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/solvers.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/renderer.js"></script>
 
 
 
 		<!-- implementation -->	
-		<script charset="utf-8" src="src/js/jquery-3.4.0.min.js"></script>
-		<script charset="utf-8" src="src/js/extras/renderers/iecss3d.js"></script>
-		<script charset="utf-8" src="src/js/extras/renderers/ierenderer.js"></script>
-		<script charset="utf-8" src="src/js/extras/controls/locked.js"></script>
-		<script charset="utf-8" src="src/js/extras/deviceMotion.js"></script>
+		<script charset="utf-8" src="lib/cuber/js/jquery-3.4.0.min.js"></script>
+		<script charset="utf-8" src="lib/cuber/js/extras/renderers/iecss3d.js"></script>
+		<script charset="utf-8" src="lib/cuber/js/extras/renderers/ierenderer.js"></script>
+		<script charset="utf-8" src="lib/cuber/js/extras/controls/locked.js"></script>
+		<script charset="utf-8" src="lib/cuber/js/extras/deviceMotion.js"></script>
 		
-		<script charset="utf-8" src="cube/js/main.js"></script>		
-		<script charset="utf-8" src="cube/js/solver.js"></script>
+		<!-- Two-phase Algorithm  -->
+		<script charset="utf-8" src="lib/cubejs/cube.js"></script>		
+		<script charset="utf-8" src="lib/cubejs/solve.js"></script>
 		
 		<!-- plugin -->	
 		<script type="text/javascript" src="cube/js/typewriting.js"></script>
+
+		<script charset="utf-8" src="cube/js/initial.js"></script>		
+		<script charset="utf-8" src="cube/js/LBL.js"></script>
 	</head>
 	
 	<body class="graydient" >
@@ -83,50 +87,64 @@
 			<div class="terminal"></div>
 		</div>
 		<div class="solve">
-			<figure onclick="Solve()">
-				<div>
-					<span class="face">还原</span>
-					<span class="face">底部十字</span>
-				</div>
-			</figure>
-			<figure onclick="Shuffle()">
-				<div>
-					<span class="face">打乱</span>
-					<span class="face">随机</span>
-				</div>
-			</figure>
+			<button class="btn solve-btn" onclick="cubeGL.solve()">Solve | LBL</button>
+			<button class="btn solve-btn" onclick="TwoPhase()">Solve | Two-phase</button>
+			<button class="btn solve-btn" onclick="Shuffle()">Shuffle</button>
+			<button class="btn solve-btn" onclick="Reset()">Reset</button>
 		</div>
 		<div id="container" ></div>
 		<div class="twist">
-			<h1>旋转指令</h1>
-			<button class="twist-btn" onclick="cube.twist('U')">U</button>
-			<button class="twist-btn" onclick="cube.twist('u')">u</button><br>
-			<button class="twist-btn" onclick="cube.twist('D')">D</button>
-			<button class="twist-btn" onclick="cube.twist('d')">d</button><br>
-			<button class="twist-btn" onclick="cube.twist('F')">F</button>
-			<button class="twist-btn" onclick="cube.twist('f')">f</button><br>
-			<button class="twist-btn" onclick="cube.twist('B')">B</button>
-			<button class="twist-btn" onclick="cube.twist('b')">b</button><br>
-			<button class="twist-btn" onclick="cube.twist('L')">L</button>
-			<button class="twist-btn" onclick="cube.twist('l')">l</button><br>
-			<button class="twist-btn" onclick="cube.twist('R')">R</button>
-			<button class="twist-btn" onclick="cube.twist('r')">r</button>
+			<h1>Rotate</h1>
+			<button class="btn" onclick="cubeGL.twist('U')">U</button>
+			<button class="btn" onclick="cubeGL.twist('u')">u</button><br>
+			<button class="btn" onclick="cubeGL.twist('D')">D</button>
+			<button class="btn" onclick="cubeGL.twist('d')">d</button><br>
+			<button class="btn" onclick="cubeGL.twist('F')">F</button>
+			<button class="btn" onclick="cubeGL.twist('f')">f</button><br>
+			<button class="btn" onclick="cubeGL.twist('B')">B</button>
+			<button class="btn" onclick="cubeGL.twist('b')">b</button><br>
+			<button class="btn" onclick="cubeGL.twist('L')">L</button>
+			<button class="btn" onclick="cubeGL.twist('l')">l</button><br>
+			<button class="btn" onclick="cubeGL.twist('R')">R</button>
+			<button class="btn" onclick="cubeGL.twist('r')">r</button>
 		</div>
 	</body>
 </html>
 
 <script>
 
-function Solve()
+function TwoPhase()
 {
-	cube.solve();
+	if(cubeGL.isSolved() == true)
+	{
+		$('.terminal').typewriting("The cube is already solved.", {
+			"cursor_color": "#ffffff",
+		})
+	}
+	else
+	{
+		var solve_step = cubeTwoPhase.solve();
+		//console.log(solve_step)
+		cubeGL.twist(solve_step)
+		$('.terminal').typewriting("Two-phase: " + solve_step, {
+			"cursor_color": "#ffffff",
+		})
+	}
 }
 
 function Shuffle()
 {
-	var shuffle_seq = cube.shuffle();
-	$('.terminal').typewriting("打乱：" + shuffle_seq, {
+	var shuffle_step = cubeGL.shuffle(20);
+	$('.terminal').typewriting("Shuffle: " + shuffle_step, {
 		"cursor_color": "#ffffff",
 	})
+}
+
+function Reset()
+{
+	var solve_step = cubeTwoPhase.solve();
+	cubeGL.twistDuration = 0;
+	cubeGL.twist(solve_step);
+	setTimeout("cubeGL.twistDuration = 300", 1000)
 }
 </script>
