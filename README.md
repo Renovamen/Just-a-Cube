@@ -13,12 +13,10 @@ https://renovamen.github.io/Just-a-Cube/index.html
 ## Structure
 
 ```
-├── index.html
 ├── cube
-│   ├── css
 │   └── js
 │       ├── LBL.js                  # Layer by layer algorithm
-│       ├── initial.js              # Initial a cube
+│       └── initial.js              # Initial a cube
 └── lib
     ├── cubejs                      # Two-phase algorithm
     └── cuber                       # Rubik's cube simulator
