@@ -61,7 +61,7 @@ body {
 .twist{
 	width:  20%;
 	height: 100%;
-	margin-top: 5%;
+	margin-top: 2%;
 	float: left;
 }
 
@@ -73,7 +73,7 @@ body {
 }
 
 button{
-	margin-top: 10%;
+	margin-top: 5%;
 	margin-left: 20px;
 	width:  80px;
 	height: 40px;

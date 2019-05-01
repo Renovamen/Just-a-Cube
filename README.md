@@ -14,19 +14,26 @@ https://renovamen.github.io/Just-a-Cube/index.html
 
 The cube simulator is from [Cuber](https://github.com/marklundin/cube).
 
-### Face
+### Face and Slice
 
-                                                Back
+                                               Back(B)
                                              -----------
-                                           /    Up     /|
+                                           /   Up(U)   /|
                                           /     1     / |
-                                          -----------  Right
+                                          -----------  Right(R)
                                          |           |  |
-                                    Left |   Front   |  .
+                                 Left(L) |  Front(F) |  .
                                          |           | /
                                          |           |/
                                           -----------
-                                              Down
+                                            Down(D)
+
+Standing(S): Rotate according to Front Face's orientation
+
+Middle(M): Rotate according to Left Face's orientation
+
+Equator(E): Rotate according to Up Face's orientation
+
 
 
 ### Default Color
