@@ -65,11 +65,15 @@ Equator(E): Rotate according to Up Face's orientation
 
 ### Twist
 
-A **capital** letter by each face itself means a **clockwise** rotation of the face while a **counterclockwise** turn is marked by a **small** letter.For example:
+A **capital** letter by each face itself means a **clockwise** rotation of the face while a **counterclockwise** turn is marked by a **small** letter.
+
+For example:
 
 U: A quarter clockwise turn on the Up face (90°).
 
 u: A quarter counterclockwise turn on the Up face (-90°).
+
+![twist](docs/twist.jpg)
 
 
 
