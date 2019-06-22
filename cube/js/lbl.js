@@ -2,16 +2,19 @@
 window.solver = new ERNO.Solver();
 solver.logic = function(cube)
 {
-	// ---------------------- 魔方状态 ----------------------
+	// 魔方状态
 	var cubeState = {};
-	var Next_Face = {l:'f',f:'r',r:'b',b:'l'};
-	var Pre_Face = {l:'b',b:'r',r:'f',f:'l'};
-	var Next_Color = {o:'b',b:'r',r:'g',g:'o'};
+	// （l, f, r, b）每种颜色下一面的颜色
+	var Next_Color = {};
+	var Next_Face = {l:'f', f:'r', r:'b', b:'l'};
+	var Pre_Face = {l:'b', b:'r', r:'f', f:'l'};
 
 	// 复原步骤
 	var Step_Name = {
 		0: "First layer edges",
-		1: "First layer corners"
+		1: "First layer corners",
+		2: "Second layer",
+		3: "Top cross"
 	};
 
 	var terminal = document.getElementById('terminal');
@@ -91,7 +94,16 @@ solver.logic = function(cube)
 			ubl: cube.up.northWest.up.color.name[0] + cube.up.northWest.back.color.name[0] + cube.up.northWest.left.color.name[0],
 			urb: cube.up.northEast.up.color.name[0] + cube.up.northEast.right.color.name[0] + cube.up.northEast.back.color.name[0],
 		}
+		
+		var color_l = cubeState['l'], color_r = cubeState['r'],
+			color_f = cubeState['f'], color_b = cubeState['b'];
+		Next_Color[color_l] = color_f;
+		Next_Color[color_f] = color_r;
+		Next_Color[color_r] = color_b;
+		Next_Color[color_b] = color_l;
+
 		console.log(cubeState)
+		console.log(Next_Color)
 	}
 
 
@@ -349,6 +361,42 @@ solver.logic = function(cube)
 		return 'First Layer Corners Single Error: ' + exp_log;
 	};
 
+	//  --------------- 调整单个中棱块  --------------- 
+	function SECOND_LAYER_SINGLE(block_pos, block_color)
+	{
+		var exp = '', exp_log = '', s;
+		for(var i = 0; i < 6; i++)
+		{
+			s = Block_Position(block_color);
+			if(s.k.indexOf('u') != -1)
+			{
+				if(Next_Color[s.v[0]] == s.v[1])
+				{
+					if(s.v[1] == cubeState[s.k[1]]) 
+						exp = 'u' + Pre_Face[s.k[1]] + 'U' + Pre_Face[s.k[1]].toUpperCase()
+							+ 'U' + s.k[1].toUpperCase() + 'u' + s.k[1];
+					else exp = 'U';
+				}
+				else
+				{
+					if(s.v[1] == cubeState[s.k[1]]) 
+						exp = 'U' + Next_Face[s.k[1]].toUpperCase() + 'u' + Next_Face[s.k[1]]
+							+ 'u' + s.k[1] + 'U' + s.k[1].toUpperCase();
+					else exp = 'U';
+				}
+			}
+			else
+			{
+				if(s.v[0] == cubeState[s.k[0]] && s.v[1] == cubeState[s.k[1]]) return exp_log; // 返回复原公式
+				else exp = 'u' + s.k[0] + 'U' + s.k[0].toUpperCase() + 'U' + s.k[1].toUpperCase() + 'u' + s.k[1];
+			}
+			exp_log += exp;
+			changeState(exp);
+		}
+		console.log('Second Layer Single Error: ', exp_log);
+		return 'Second Layer Single Error: ' + exp_log;
+	}
+
     // --------------- 底棱归位 | COMPLETE THE FIRST LAYER EDGES ---------------
 	function FIRST_LAYER_EDGES()
 	{
@@ -358,7 +406,7 @@ solver.logic = function(cube)
 		order += FIRST_LAYER_EDGES_SINGLE('df', cubeState['d'] + cubeState['f']);
 		order += FIRST_LAYER_EDGES_SINGLE('dr', cubeState['d'] + cubeState['r']);
 		order += FIRST_LAYER_EDGES_SINGLE('db', cubeState['d'] + cubeState['b']);
-		return Compress(order)
+		return Compress(order);
 		//Execute(order, "First layer edges");
 	};
 
@@ -371,12 +419,47 @@ solver.logic = function(cube)
 		order += FIRST_LAYER_CORNERS_SINGLE('dfr', cubeState['d'] + cubeState['f'] + cubeState['r']);
 		order += FIRST_LAYER_CORNERS_SINGLE('drb', cubeState['d'] + cubeState['r'] + cubeState['b']);
 		order += FIRST_LAYER_CORNERS_SINGLE('dbl', cubeState['d'] + cubeState['b'] + cubeState['l']);
-		return Compress(order)
+		return Compress(order);
 		//Execute(order, "First layer corners");
 	}
+
 	// --------------- 中棱归位 | COMPLETE THE SECOND LAYER ---------------
+	function SECOND_LAYER()
+	{
+		console.log('------------ 第三步：中棱归位  | COMPLETE THE SECOND LAYER ------------');
+		var order = '';
+		order += SECOND_LAYER_SINGLE('lf', cubeState['l'] + cubeState['f']);
+		order += SECOND_LAYER_SINGLE('fr', cubeState['f'] + cubeState['r']);
+		order += SECOND_LAYER_SINGLE('rb', cubeState['r'] + cubeState['b']);
+		order += SECOND_LAYER_SINGLE('bl', cubeState['b'] + cubeState['l']);
+		return Compress(order);
+	};
 
 	// --------------- 顶部十字 | COMPLETE THE TOP CROSS --------------- 
+	function TOP_CROSS()
+	{
+		console.log('------------ 第四步：顶部十字 | COMPLETE THE TOP CROSS ------------');
+		var exp = '', exp_log = '';
+		var top_c = cubeState['u']; // 顶层颜色
+		
+		for(var i = 0; i < 4; i++)
+		{
+			if(cubeState.ul[0] == top_c && cubeState.ur[0] == top_c
+				&& cubeState.uf[0] == top_c && cubeState.ub[0] == top_c) 
+				return Compress(exp_log); // 返回复原公式
+			else if(cubeState.ul[0] == top_c && cubeState.ur[0] == top_c) exp = 'FRUruf';
+			else if(cubeState.uf[0] == top_c && cubeState.ub[0] == top_c) exp = 'RBUbur';
+			else if(cubeState.uf[0] == top_c && cubeState.ur[0] == top_c) exp = 'FRUruf';
+			else if(cubeState.ur[0] == top_c && cubeState.ub[0] == top_c) exp = 'RBUbur';
+			else if(cubeState.ub[0] == top_c && cubeState.ul[0] == top_c) exp = 'BLUlub';
+			else if(cubeState.ul[0] == top_c && cubeState.uf[0] == top_c) exp = 'LFUful';
+			else exp = 'FRUruf';
+			exp_log += exp;
+			changeState(exp);
+		}
+		console.log('Top Cross Error: ', exp_log);
+		return 'Top Cross Error: ' + exp_log;
+	};
 
 	// ----- 顶角归位（位置） | COMPLETE THE THIRD LAYER CORNERS (POSITION) -----
 
@@ -385,16 +468,19 @@ solver.logic = function(cube)
 	// --------------- 顶棱归位 | COMPLETE THE THIRD LAYER EDGES --------------- 
 	
 
-	// 返回魔方复原步骤
+	//  ------------------- 返回魔方复原步骤 ------------------- 
     function Solve_Cube()
     {
 		var solve_step = [];
 		solve_step.push(FIRST_LAYER_EDGES());
 		solve_step.push(FIRST_LAYER_CORNERS());
+		solve_step.push(SECOND_LAYER());
+		solve_step.push(TOP_CROSS());
 		Execute(solve_step);
 	};
 
-	// 压缩指令数，如：'uuu' = 'U'（逆时针转 270° = 顺时针转 90°）
+	// ------------------- 压缩指令数 ------------------- 
+	// 如：'uuu' = 'U'（逆时针转 270° = 顺时针转 90°）
     function Compress(order)
     {
 		for(var i = 0; i < 10; i++)

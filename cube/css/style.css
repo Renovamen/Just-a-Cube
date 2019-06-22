@@ -40,7 +40,7 @@ body {
 
 /* ------------------- typewritting terminal ------------------- */
 .solve-step{
-	width: 60%;
+	width: 80%;
 	height: 10%;
 	border-radius: 16px;
 	border: 1px solid #ffffff;
@@ -48,7 +48,7 @@ body {
 }
 
 .solve-step .terminal {
-	width: 55%;
+	width: 75%;
 	font-size: 16px;
 	margin: 1.3%;
 	color: #ffffff;
