@@ -2,27 +2,29 @@
 
 A rubik's cube solver.
 
-
+&nbsp;
 
 ## Preview
 
 https://renovamen.github.io/Just-a-Cube/index.html
 
-
+&nbsp;
 
 ## Structure
 
 ```
 ├── cube
 │   └── js
-│       ├── LBL.js                  # Layer by layer algorithm
+│       ├── lbl.js                  # Layer by layer algorithm
+│       ├── two-phase.js            # Two-phase algorithm
+│       ├── util.js                 # type, shuffle and reset
 │       └── initial.js              # Initial a cube
 └── lib
     ├── cubejs                      # Two-phase algorithm
     └── cuber                       # Rubik's cube simulator
 ```
 
-
+&nbsp;
 
 ## About Cube
 
@@ -63,9 +65,7 @@ Equator(E): Rotate according to Up Face's orientation
 
 ### Twist
 
-A **capital** letter by each face itself means a **clockwise** rotation of the face while a **counterclockwise** turn is marked by a **small** letter.
-
-For example:
+A **capital** letter by each face itself means a **clockwise** rotation of the face while a **counterclockwise** turn is marked by a **small** letter.For example:
 
 U: A quarter clockwise turn on the Up face (90°).
 
@@ -73,14 +73,14 @@ u: A quarter counterclockwise turn on the Up face (-90°).
 
 
 
-
+&nbsp;
 
 ## Algorithm
 
 ### Layer By Layer (层先法)
 
 - [x] The First Layer Edges | 底部棱块归位
-- [ ] The First Layer Corners | 底部角块归位
+- [x] The First Layer Corners | 底部角块归位
 - [ ] The Second Layer | 复原第二层
 - [ ] The Top Cross | 顶部十字
 - [ ] The Third Layer Corners (Position) | 顶部角块归位（位置）

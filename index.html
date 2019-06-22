@@ -2,25 +2,20 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+		<title>Cuber</title>
 		<meta name="description" content="Rubik’s Cube">
-		<meta name="keywords" content="Erno Rubik’s Cube">
 		<link rel="icon" type="image/png" href="lib/cuber/media/cube.png">
+		
+		<!------ FONT ------>
+		<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
 
 		<!------ CSS ------>
 		<link rel="stylesheet" type="text/css" href="lib/cuber/css/cube.css">
 		<link rel="stylesheet" type="text/css" href="cube/css/style.css">
 
-
-
-		<title>Cuber</title>
-
-		<script charset="utf-8" src="lib/cuber/js/vendor/tween.min.js"></script>
-
-
 		<!-- cube source code -->
-
-
+			<script charset="utf-8" src="lib/cuber/js/vendor/tween.min.js"></script>
+			
 			<!--  Three.js  -->
 			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/Three.js"></script>
 			<script charset="utf-8" src="lib/cuber/js/vendor/threejs/src/core/EventDispatcher.js"></script>
@@ -62,29 +57,30 @@
 			<script charset="utf-8" src="lib/cuber/js/solvers.js"></script>
 			<script charset="utf-8" src="lib/cuber/js/renderer.js"></script>
 
-
-
-		<!-- implementation -->	
-		<script charset="utf-8" src="lib/cuber/js/jquery-3.4.0.min.js"></script>
-		<script charset="utf-8" src="lib/cuber/js/extras/renderers/iecss3d.js"></script>
-		<script charset="utf-8" src="lib/cuber/js/extras/renderers/ierenderer.js"></script>
-		<script charset="utf-8" src="lib/cuber/js/extras/controls/locked.js"></script>
-		<script charset="utf-8" src="lib/cuber/js/extras/deviceMotion.js"></script>
+			<!-- implementation -->	
+			<script charset="utf-8" src="lib/cuber/js/jquery-3.4.0.min.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/extras/renderers/iecss3d.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/extras/renderers/ierenderer.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/extras/controls/locked.js"></script>
+			<script charset="utf-8" src="lib/cuber/js/extras/deviceMotion.js"></script>
 		
 		<!-- Two-phase Algorithm  -->
 		<script charset="utf-8" src="lib/cubejs/cube.js"></script>		
 		<script charset="utf-8" src="lib/cubejs/solve.js"></script>
 		
-		<!-- plugin -->	
-		<script type="text/javascript" src="cube/js/typewriting.js"></script>
-
-		<script charset="utf-8" src="cube/js/initial.js"></script>		
-		<script charset="utf-8" src="cube/js/LBL.js"></script>
+		<!-- Typewriting Plugin -->	
+		<script type="text/javascript" src="lib/typewriting/typewriting.js"></script>
+		
+		<!-- Just a Cube -->
+		<script charset="utf-8" src="cube/js/initial.js"></script>
+		<script charset="utf-8" src="cube/js/util.js"></script>
+		<script charset="utf-8" src="cube/js/lbl.js"></script>
+		<script charset="utf-8" src="cube/js/two-phase.js"></script>	
 	</head>
 	
 	<body class="graydient" >
 		<div class="solve-step">
-			<div class="terminal"></div>
+			<div class="terminal" id="terminal"></div>
 		</div>
 		<div class="solve">
 			<button class="btn solve-btn" onclick="cubeGL.solve()">Solve | LBL</button>
@@ -116,92 +112,3 @@
 		</div>
 	</body>
 </html>
-
-<script>
-
-function TwoPhase()
-{
-	updateCubeTwoPhase()
-	if(cubeGL.isSolved() == true)
-	{
-		$('.terminal').typewriting("The cube is already solved.", {
-			"cursor_color": "#ffffff",
-		})
-	}
-	else
-	{
-		var solve_step = cubeTwoPhase.solve();
-		//console.log(solve_step)
-		cubeGL.twist(solve_step)
-		$('.terminal').typewriting("Two-phase: " + solve_step, {
-			"cursor_color": "#ffffff",
-		})
-	}
-}
-
-function updateCubeTwoPhase()
-{
-	var cubeStringColor = ""
-	var cubeStringFaces = ""
-	
-	var read = [8, 7, 6, 5, 4, 3, 2, 1, 0]
-	for (var i = 0; i <= 8; i++) {
-		cubeStringColor += cubeGL.up.cubelets[read[i]].up.color.initial
-	}
-	for (var i = 0; i <= 8; i++) {
-		cubeStringColor += cubeGL.right.cubelets[read[i]].right.color.initial
-	}
-	for (var i = 0; i <= 8; i++) {
-		cubeStringColor += cubeGL.front.cubelets[read[i]].front.color.initial
-	}
-
-	read = [2, 5, 8, 1, 4, 7, 0, 3, 6]
-	for (var i = 0; i <= 8; i++) {
-		cubeStringColor += cubeGL.down.cubelets[read[i]].down.color.initial
-	}
-
-	read = [6, 3, 0, 7, 4, 1, 8, 5, 2]
-	for (var i = 0; i <= 8; i++) {
-		cubeStringColor += cubeGL.left.cubelets[read[i]].left.color.initial
-	}
-	for (var i = 0; i <= 8; i++) {
-		cubeStringColor += cubeGL.back.cubelets[read[i]].back.color.initial
-	}
-
-	var cubeOriginColors = [
-		{pos: "U", color: cubeGL.up.cubelets[4].up.color.initial},
-		{pos: "R", color: cubeGL.right.cubelets[4].right.color.initial},
-		{pos: "F", color: cubeGL.front.cubelets[4].front.color.initial},
-		{pos: "D", color: cubeGL.down.cubelets[4].down.color.initial},
-		{pos: "L", color: cubeGL.left.cubelets[4].left.color.initial},
-		{pos: "B", color: cubeGL.back.cubelets[4].back.color.initial}
-	]
-
-	for (var i = 0; i < cubeStringColor.length; i++) {
-		for (var j = 0; j < cubeOriginColors.length; j++) {
-			if(cubeStringColor[i] == cubeOriginColors[j].color) {
-				cubeStringFaces += cubeOriginColors[j].pos
-				break
-			}
-		}
-	}
-	cubeTwoPhase = Cube.fromString(cubeStringFaces)
-}
-
-function Shuffle()
-{
-	var shuffle_step = cubeGL.shuffle(20);
-	$('.terminal').typewriting("Shuffle: " + shuffle_step, {
-		"cursor_color": "#ffffff",
-	})
-}
-
-function Reset()
-{
-	updateCubeTwoPhase()
-	var solve_step = cubeTwoPhase.solve();
-	cubeGL.twistDuration = 0;
-	cubeGL.twist(solve_step);
-	setTimeout("cubeGL.twistDuration = 300", 1000)
-}
-</script>

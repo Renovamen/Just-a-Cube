@@ -6,26 +6,54 @@ solver.logic = function(cube)
 	var cubeState = {};
 	var Next_Face = {l:'f',f:'r',r:'b',b:'l'};
 	var Pre_Face = {l:'b',b:'r',r:'f',f:'l'};
-    var Next_Color = {o:'b',b:'r',r:'g',g:'o'};
+	var Next_Color = {o:'b',b:'r',r:'g',g:'o'};
+
+	// 复原步骤
+	var Step_Name = {
+		0: "First layer edges",
+		1: "First layer corners"
+	};
+
+	var terminal = document.getElementById('terminal');
+    var typewriter = new Typewriter(terminal);
 
 	getCubeState()
-	var solve_step = Solve_Cube();
-	console.log(solve_step)
-	
-	if(solve_step != '')
+	Solve_Cube();
+
+
+	// ------------------ 执行并打印复原步骤 ------------------
+	function Execute(solve_step)
 	{
-		cube.twist(solve_step);
-		$('.terminal').typewriting("The first layer cross: " + solve_step,{
-			"cursor_color": "#ffffff",
-		})
+		for(var i = 0; i < solve_step.length; i++)
+		{
+			step = solve_step[i];
+			if(step != '')
+			{
+				cube.twist(step);
+				if(i != solve_step.length - 1)
+				{
+					typewriter.typeString(Step_Name[i] + ': ' + step)
+						.pauseFor(500)
+						.deleteAll()
+						.start();
+				}
+				else typewriter.typeString(Step_Name[i] + ': ' + step).start();
+			}
+			else 
+			{
+				if(i != solve_step.length - 1)
+				{
+					typewriter.typeString(Step_Name[i] + ' is already solved.')
+						.pauseFor(500)
+						.deleteAll()
+						.start();
+				}
+				else typewriter.typeString(Step_Name[i] + ' is already solved.').start();
+			}
+			console.log(step)
+			console.log(Step_Name[i] + " is already completed.")
+		}
 	}
-	else 
-	{
-		$('.terminal').typewriting("The first layer cross is already solved.",{
-			"cursor_color": "#ffffff",
-		})
-	}
-	console.log('The first layer cross is already completed.')
 
 	// ------------------ 获得魔方当前状态 ------------------
 	function getCubeState()
@@ -226,7 +254,6 @@ solver.logic = function(cube)
     
    
     // ---------------------------- 层先法还原 ---------------------------- 
-
     // 查找当前要调整的棱块所在位置
 	function Block_Position(block)
 	{
@@ -248,7 +275,7 @@ solver.logic = function(cube)
 			{
 				if(s.v[0] == block_color[0])
 				{
-					if(s.k == block_pos)return exp_log;		//最终返回指令
+					if(s.k == block_pos) return exp_log; // 返回单个底棱块复原公式
 					else exp = s.k[1].toUpperCase() + s.k[1].toUpperCase();
 				}
 				else exp = s.k[1].toUpperCase();
@@ -286,6 +313,42 @@ solver.logic = function(cube)
 		return 'First Layer Cross Single Error: ' + exp_log;
 	};
 
+	//  --------------- 调整单个底角块  --------------- 
+	function FIRST_LAYER_CORNERS_SINGLE(block_pos, block_color)
+	{
+		var exp = '', exp_log = '', s;
+		for(var i = 0; i < 10; i++)
+		{
+			s = Block_Position(block_color);
+			if(s.k.indexOf('d') != -1)
+			{
+				// 所找的角块在底面位置
+				if(s.v[0] == cubeState['d'])
+				{
+					if(s.k == block_pos) return exp_log;	// 返回单个底角块复原公式
+					else exp = s.k[1] + 'U' + s.k[1].toUpperCase();
+				}
+				else if(s.v[1] == cubeState['d']) exp = s.k[1] + 'u' + s.k[1].toUpperCase();
+				else exp = s.k[2].toUpperCase() + 'U' + s.k[2];
+			}
+			else
+			{
+				//所找的角块在顶面位置
+				if(s.k == 'u' + block_pos[1] + block_pos[2])
+				{
+					if(s.v[0] == cubeState['d']) exp = s.k[2].toUpperCase() + 'u' + s.k[2];
+					else if(s.v[1] == cubeState['d']) exp = s.k[1] + 'u' + s.k[1].toUpperCase();
+					else exp = s.k[2].toUpperCase() + 'U' + s.k[2];
+				}
+				else exp = 'U';
+			}
+			exp_log += exp;
+			changeState(exp);
+		}
+		console.log('First Layer Corners Single Error: ', exp_log);
+		return 'First Layer Corners Single Error: ' + exp_log;
+	};
+
     // --------------- 底棱归位 | COMPLETE THE FIRST LAYER EDGES ---------------
 	function FIRST_LAYER_EDGES()
 	{
@@ -295,11 +358,22 @@ solver.logic = function(cube)
 		order += FIRST_LAYER_EDGES_SINGLE('df', cubeState['d'] + cubeState['f']);
 		order += FIRST_LAYER_EDGES_SINGLE('dr', cubeState['d'] + cubeState['r']);
 		order += FIRST_LAYER_EDGES_SINGLE('db', cubeState['d'] + cubeState['b']);
-		return order;
+		return Compress(order)
+		//Execute(order, "First layer edges");
 	};
 
 	// -------------- 底角归位 | COMPLETE THE FIRST LAYER CORNERS --------------
-
+	function FIRST_LAYER_CORNERS()
+	{
+		console.log('------------ 第二步：底角归位  | COMPLETE THE FIRST LAYER CORNERS ------------');
+		var order = '';
+		order += FIRST_LAYER_CORNERS_SINGLE('dlf', cubeState['d'] + cubeState['l'] + cubeState['f']);
+		order += FIRST_LAYER_CORNERS_SINGLE('dfr', cubeState['d'] + cubeState['f'] + cubeState['r']);
+		order += FIRST_LAYER_CORNERS_SINGLE('drb', cubeState['d'] + cubeState['r'] + cubeState['b']);
+		order += FIRST_LAYER_CORNERS_SINGLE('dbl', cubeState['d'] + cubeState['b'] + cubeState['l']);
+		return Compress(order)
+		//Execute(order, "First layer corners");
+	}
 	// --------------- 中棱归位 | COMPLETE THE SECOND LAYER ---------------
 
 	// --------------- 顶部十字 | COMPLETE THE TOP CROSS --------------- 
@@ -314,9 +388,10 @@ solver.logic = function(cube)
 	// 返回魔方复原步骤
     function Solve_Cube()
     {
-		var solve_order = '';
-		solve_order += FIRST_LAYER_EDGES();
-		return Compress(solve_order);
+		var solve_step = [];
+		solve_step.push(FIRST_LAYER_EDGES());
+		solve_step.push(FIRST_LAYER_CORNERS());
+		Execute(solve_step);
 	};
 
 	// 压缩指令数，如：'uuu' = 'U'（逆时针转 270° = 顺时针转 90°）
