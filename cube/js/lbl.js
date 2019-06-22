@@ -18,7 +18,7 @@ solver.logic = function(cube)
 	};
 
 	var terminal = document.getElementById('terminal');
-    var typewriter = new Typewriter(terminal);
+	var typewriter = new Typewriter(terminal);
 
 	getCubeState()
 	Solve_Cube();
@@ -109,7 +109,7 @@ solver.logic = function(cube)
 
 	// ------------------- 模拟魔方按解法转动后的状态变化 ------------------- 
     
-    // Back 面顺时针旋转 90°
+	// Back 面顺时针旋转 90°
 	function Twist_B()
 	{
 		// 棱块
@@ -218,8 +218,8 @@ solver.logic = function(cube)
 	};
 
 	// ------------------- 魔方组合动作 ------------------- 
-    function changeState(order_list) 
-    {
+	function changeState(order_list) 
+	{
 		for(order of order_list) 
 		{
 			switch(order)
@@ -262,11 +262,11 @@ solver.logic = function(cube)
 					break;
 			}
 		}
-    };
+	};
     
    
-    // ---------------------------- 层先法还原 ---------------------------- 
-    // 查找当前要调整的棱块所在位置
+	// ---------------------------- 层先法还原 ---------------------------- 
+	// --------------- 查找当前要调整的棱块所在位置 --------------- 
 	function Block_Position(block)
 	{
         var reg = new RegExp('['+block+']{'+block.length+'}');
@@ -275,7 +275,7 @@ solver.logic = function(cube)
 			if(cubeState[k].match(reg)) return {k:k,v:cubeState[k]};
 	};
 
-	//  --------------- 调整单个底棱块  --------------- 
+	// --------------- 调整单个底棱块  --------------- 
 	function FIRST_LAYER_EDGES_SINGLE(block_pos, block_color)
 	{
 		var exp = '', exp_log = '', s;
@@ -325,7 +325,7 @@ solver.logic = function(cube)
 		return 'First Layer Cross Single Error: ' + exp_log;
 	};
 
-	//  --------------- 调整单个底角块  --------------- 
+	// --------------- 调整单个底角块  --------------- 
 	function FIRST_LAYER_CORNERS_SINGLE(block_pos, block_color)
 	{
 		var exp = '', exp_log = '', s;
@@ -361,7 +361,7 @@ solver.logic = function(cube)
 		return 'First Layer Corners Single Error: ' + exp_log;
 	};
 
-	//  --------------- 调整单个中棱块  --------------- 
+	// --------------- 调整单个中棱块  --------------- 
 	function SECOND_LAYER_SINGLE(block_pos, block_color)
 	{
 		var exp = '', exp_log = '', s;
@@ -397,7 +397,7 @@ solver.logic = function(cube)
 		return 'Second Layer Single Error: ' + exp_log;
 	}
 
-    // --------------- 底棱归位 | COMPLETE THE FIRST LAYER EDGES ---------------
+	// --------------- 底棱归位 | COMPLETE THE FIRST LAYER EDGES ---------------
 	function FIRST_LAYER_EDGES()
 	{
 		console.log('------------ 第一步：底棱归位 | COMPLETE THE FIRST LAYER EDGES ------------');
@@ -469,8 +469,8 @@ solver.logic = function(cube)
 	
 
 	//  ------------------- 返回魔方复原步骤 ------------------- 
-    function Solve_Cube()
-    {
+	function Solve_Cube()
+	{
 		var solve_step = [];
 		solve_step.push(FIRST_LAYER_EDGES());
 		solve_step.push(FIRST_LAYER_CORNERS());
@@ -481,8 +481,8 @@ solver.logic = function(cube)
 
 	// ------------------- 压缩指令数 ------------------- 
 	// 如：'uuu' = 'U'（逆时针转 270° = 顺时针转 90°）
-    function Compress(order)
-    {
+	function Compress(order)
+	{
 		for(var i = 0; i < 10; i++)
 		{
 			order = order.replace(/uU|Uu|dD|Dd|lL|Ll|fF|Ff|rR|Rr|bB|Bb|uuuu|dddd|llll|ffff|rrrr|bbbb|UUUU|DDDD|LLLL|FFFF|RRRR|BBBB/g, '');
