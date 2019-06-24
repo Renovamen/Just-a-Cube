@@ -6,7 +6,7 @@ A rubik's cube solver.
 
 ## Play It
 
-https://renovamen.github.io/Just-a-Cube/index.html
+https://renovamen.github.io/Just-a-Cube/
 
 &nbsp;
 
@@ -87,8 +87,8 @@ u: A quarter counterclockwise turn on the Up face (-90°).
 - [x] The First Layer Corners | 底部角块归位
 - [x] The Second Layer | 复原第二层
 - [x] The Top Cross | 顶部十字
-- [ ] The Third Layer Corners (Position) | 顶部角块归位（位置）
-- [ ] The Third Layer Corners (Orient) | 顶部角块归位（方向）
+- [x] The Third Layer Corners (Position) | 顶部角块归位（位置）
+- [x] The Third Layer Corners (Orient) | 顶部角块归位（方向）
 - [ ] The Third Layer Edges |  顶部棱块归位
 
 

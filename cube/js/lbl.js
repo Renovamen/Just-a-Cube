@@ -15,7 +15,8 @@ solver.logic = function(cube)
 		1: "First layer corners",
 		2: "Second layer",
 		3: "Top cross",
-		4: "Third layer corners"
+		4: "Third layer corners (pos)",
+		5: "Third layer corners (ori)"
 	};
 
 	var terminal = document.getElementById('terminal');
@@ -441,19 +442,19 @@ solver.logic = function(cube)
 	{
 		console.log('------------ 第四步：顶部十字 | COMPLETE THE TOP CROSS ------------');
 		var exp = '', exp_log = '';
-		var top_c = cubeState['u']; // 顶层颜色
+		var uc = cubeState['u']; // 顶层颜色
 		
 		for(var i = 0; i < 4; i++)
 		{
-			if(cubeState.ul[0] == top_c && cubeState.ur[0] == top_c
-				&& cubeState.uf[0] == top_c && cubeState.ub[0] == top_c) 
+			if(cubeState.ul[0] == uc && cubeState.ur[0] == uc
+				&& cubeState.uf[0] == uc && cubeState.ub[0] == uc) 
 				return Compress(exp_log); // 返回复原公式
-			else if(cubeState.ul[0] == top_c && cubeState.ur[0] == top_c) exp = 'FRUruf';
-			else if(cubeState.uf[0] == top_c && cubeState.ub[0] == top_c) exp = 'RBUbur';
-			else if(cubeState.uf[0] == top_c && cubeState.ur[0] == top_c) exp = 'FRUruf';
-			else if(cubeState.ur[0] == top_c && cubeState.ub[0] == top_c) exp = 'RBUbur';
-			else if(cubeState.ub[0] == top_c && cubeState.ul[0] == top_c) exp = 'BLUlub';
-			else if(cubeState.ul[0] == top_c && cubeState.uf[0] == top_c) exp = 'LFUful';
+			else if(cubeState.ul[0] == uc && cubeState.ur[0] == uc) exp = 'FRUruf';
+			else if(cubeState.uf[0] == uc && cubeState.ub[0] == uc) exp = 'RBUbur';
+			else if(cubeState.uf[0] == uc && cubeState.ur[0] == uc) exp = 'FRUruf';
+			else if(cubeState.ur[0] == uc && cubeState.ub[0] == uc) exp = 'RBUbur';
+			else if(cubeState.ub[0] == uc && cubeState.ul[0] == uc) exp = 'BLUlub';
+			else if(cubeState.ul[0] == uc && cubeState.uf[0] == uc) exp = 'LFUful';
 			else exp = 'FRUruf';
 			exp_log += exp;
 			changeState(exp);
@@ -463,11 +464,11 @@ solver.logic = function(cube)
 	};
 
 	// ----- 顶角归位（位置） | COMPLETE THE THIRD LAYER CORNERS (POSITION) -----
-	function THIRD_LAYER_CORNERS()
+	function THIRD_LAYER_CORNERS_POS()
 	{
 		console.log('------------ 第五步：顶角归位（位置） | COMPLETE THE THIRD LAYER CORNERS (POSITION) ------------');
 		var step = 'rLUluRULul', exp_log = '';
-		var block = ['ulf', 'ufr', 'urb', 'ubl'], uc = cubeState['u'];
+		var blocks = ['ulf', 'ufr', 'urb', 'ubl'], uc = cubeState['u'];
 
 		for(var i = 0; i < 4; i++)
 		{
@@ -478,9 +479,9 @@ solver.logic = function(cube)
 				var next = j % 4;
 				
 				// 上一个块除去顶层颜色后的颜色
-				lastc = cubeState[block[last]].replace(uc, ''); 
+				lastc = cubeState[blocks[last]].replace(uc, ''); 
 				// 这个块除去顶层颜色后的颜色
-				nextc = cubeState[block[next]].replace(uc, '');
+				nextc = cubeState[blocks[next]].replace(uc, '');
 				
 				if(Next_Color[lastc[0]] == lastc[1])
 				{
@@ -501,10 +502,10 @@ solver.logic = function(cube)
 
 			if(times == 1) 
 			{
-				if(last - 1 == 0) exp_log = 'u' + step;
-				else if(last - 1 == 1) exp_log = step;
-				else if(last - 1 == 2) exp_log = 'U' + step;
-				else if(last - 1 == 3) exp_log = 'UU' + step;
+				if(last - 1 == 0) exp_log = 'u' + step, changeState(exp_log);
+				else if(last - 1 == 1) exp_log = step, changeState(exp_log);
+				else if(last - 1 == 2) exp_log = 'U' + step, changeState(exp_log);
+				else if(last - 1 == 3) exp_log = 'UU' + step, changeState(exp_log);
 				return Compress(exp_log); // 返回复原公式
 			}
 			// times > 1 说明顶层角块位置本来就是对的，不需要调整
@@ -512,11 +513,74 @@ solver.logic = function(cube)
 		}
 
 		exp_log = step + 'U' + step;
+		changeState(exp_log);
 		return Compress(exp_log); // 返回复原公式
 	}
 
 	// ----- 顶角归位（方向） | COMPLETE THE THIRD LAYER CORNERS (ORIENT) -----
+	function THIRD_LAYER_CORNERS_ORI()
+	{
+		console.log('------------ 第五步：顶角归位（方向） | COMPLETE THE THIRD LAYER CORNERS (ORIENT) ------------');
+		var step1 = 'ruRuruuRuu', step2 = 'FUfUFUUfUU', exp_log = '', s = '';	
+		var blocks = ['ulf', 'ufr', 'urb', 'ubl'], uc = cubeState['u'];
+		
+		for(block of blocks) s += cubeState[block].indexOf(uc);
 
+		if(s.match(/2220|0222|2022|2202/))
+		{
+			if(s == '0222') exp_log += 'U';
+			else if(s == '2022') exp_log += 'UU';
+			else if(s == '2202') exp_log += 'u';
+			exp_log += step1;
+		}
+		else if(s.match(/1110|0111|1011|1101/))
+		{
+			if(s == '0111') exp_log += 'U';
+			else if(s == '1011') exp_log += 'UU';
+			else if(s == '1101') exp_log += 'u';
+			exp_log += step2;
+		}
+		else if(s.match(/2001|1200|0120|0012/))
+		{
+			if(s == '1200') exp_log += 'U';
+			else if(s == '0120') exp_log += 'UU';
+			else if(s == '0012') exp_log += 'u';
+			exp_log += step1 + 'U' + step2;
+		}
+		else if(s.match(/1002|2100|0210|0021/))
+		{
+			if(s == '2100') exp_log += 'U';
+			else if(s == '0210') exp_log += 'UU';
+			else if(s == '0021') exp_log += 'u';
+			exp_log += step2 + 'U' + step1;
+		}
+		else if(s.match(/2121|1212/))
+		{
+			if(s == '1212') exp_log += 'U';
+			exp_log += step2 + 'UU' + step2;
+		}
+		else if(s.match(/2112|2211|1221|1122/))
+		{
+			if(s == '2211') exp_log += 'U';
+			else if(s == '1221') exp_log += 'UU';
+			else if(s == '1122') exp_log += 'u';
+			exp_log += step1 + 'U' + step1;
+		}
+		else if(s.match(/0201|1020/))
+		{
+			if(s == '1020') exp_log += 'U';
+			exp_log += step1 + 'UU' + step2;
+		}
+		else if(s.match(/0102|2010/))
+		{
+			if(s == '2010') exp_log += 'U';
+			exp_log += step2 + 'UU' + step1;
+		}
+
+		changeState(exp_log);
+		console.log(exp_log)
+		return Compress(exp_log); // 返回复原公式
+	}
 	// --------------- 顶棱归位 | COMPLETE THE THIRD LAYER EDGES --------------- 
 	
 
@@ -528,7 +592,8 @@ solver.logic = function(cube)
 		solve_step.push(FIRST_LAYER_CORNERS());
 		solve_step.push(SECOND_LAYER());
 		solve_step.push(TOP_CROSS());
-		solve_step.push(THIRD_LAYER_CORNERS());
+		solve_step.push(THIRD_LAYER_CORNERS_POS());
+		solve_step.push(THIRD_LAYER_CORNERS_ORI());
 		Execute(solve_step);
 	};
 
