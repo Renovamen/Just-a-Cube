@@ -14,7 +14,8 @@ solver.logic = function(cube)
 		0: "First layer edges",
 		1: "First layer corners",
 		2: "Second layer",
-		3: "Top cross"
+		3: "Top cross",
+		4: "Third layer corners"
 	};
 
 	var terminal = document.getElementById('terminal');
@@ -266,7 +267,7 @@ solver.logic = function(cube)
     
    
 	// ---------------------------- 层先法还原 ---------------------------- 
-	// --------------- 查找当前要调整的棱块所在位置 --------------- 
+	// --------------- 查找当前要调整的块所在位置 --------------- 
 	function Block_Position(block)
 	{
         var reg = new RegExp('['+block+']{'+block.length+'}');
@@ -462,6 +463,57 @@ solver.logic = function(cube)
 	};
 
 	// ----- 顶角归位（位置） | COMPLETE THE THIRD LAYER CORNERS (POSITION) -----
+	function THIRD_LAYER_CORNERS()
+	{
+		console.log('------------ 第五步：顶角归位（位置） | COMPLETE THE THIRD LAYER CORNERS (POSITION) ------------');
+		var step = 'rLUluRULul', exp_log = '';
+		var block = ['ulf', 'ufr', 'urb', 'ubl'], uc = cubeState['u'];
+
+		for(var i = 0; i < 4; i++)
+		{
+			var last = i;
+			var times = 0; // 顶层有多少角块位置是对的
+			for(var j = i + 1; j < i + 4; j++)
+			{
+				var next = j % 4;
+				
+				// 上一个块除去顶层颜色后的颜色
+				lastc = cubeState[block[last]].replace(uc, ''); 
+				// 这个块除去顶层颜色后的颜色
+				nextc = cubeState[block[next]].replace(uc, '');
+				
+				if(Next_Color[lastc[0]] == lastc[1])
+				{
+					// 复原后的魔方中，这个块正好就应该在上一个块的后面
+					if(nextc.indexOf(lastc[1]) != -1
+						&& nextc.indexOf(Next_Color[lastc[1]]) != -1) times += 1;
+					else break;
+				}
+				else
+				{
+					if(nextc.indexOf(lastc[0]) != -1
+						&& nextc.indexOf(Next_Color[lastc[0]]) != -1) times += 1;
+					else break;
+				}
+
+				last = next;
+			}
+
+			if(times == 1) 
+			{
+				if(last - 1 == 0) exp_log = 'u' + step;
+				else if(last - 1 == 1) exp_log = step;
+				else if(last - 1 == 2) exp_log = 'U' + step;
+				else if(last - 1 == 3) exp_log = 'UU' + step;
+				return Compress(exp_log); // 返回复原公式
+			}
+			// times > 1 说明顶层角块位置本来就是对的，不需要调整
+			else if(times > 1) return exp_log;
+		}
+
+		exp_log = step + 'U' + step;
+		return Compress(exp_log); // 返回复原公式
+	}
 
 	// ----- 顶角归位（方向） | COMPLETE THE THIRD LAYER CORNERS (ORIENT) -----
 
@@ -476,6 +528,7 @@ solver.logic = function(cube)
 		solve_step.push(FIRST_LAYER_CORNERS());
 		solve_step.push(SECOND_LAYER());
 		solve_step.push(TOP_CROSS());
+		solve_step.push(THIRD_LAYER_CORNERS());
 		Execute(solve_step);
 	};
 

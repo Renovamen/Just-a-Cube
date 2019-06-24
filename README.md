@@ -4,7 +4,7 @@ A rubik's cube solver.
 
 &nbsp;
 
-## Preview
+## Play It
 
 https://renovamen.github.io/Just-a-Cube/index.html
 
@@ -17,7 +17,7 @@ https://renovamen.github.io/Just-a-Cube/index.html
 │   └── js
 │       ├── lbl.js                  # Layer by layer algorithm
 │       ├── two-phase.js            # Two-phase algorithm
-│       ├── util.js                 # type, shuffle and reset
+│       ├── util.js                 # Type, shuffle and reset
 │       └── initial.js              # Initial a cube
 └── lib
     ├── cubejs                      # Two-phase algorithm
