@@ -16,7 +16,8 @@ solver.logic = function(cube)
 		2: "Second layer",
 		3: "Top cross",
 		4: "Third layer corners (pos)",
-		5: "Third layer corners (ori)"
+		5: "Third layer corners (ori)",
+		6: "Third layer edges"
 	};
 
 	var terminal = document.getElementById('terminal');
@@ -219,6 +220,29 @@ solver.logic = function(cube)
 		cubeState.dfr = tmp;
 	};
 
+	// 整体顺时针旋转 90°
+	function Twist_Y()
+	{
+		// 顶层
+		Twist_U();
+
+		// 中层
+		tmp = cubeState.lf;
+		cubeState.lf = cubeState.fr;
+		cubeState.fr = cubeState.rb;
+		cubeState.rb = cubeState.bl;
+		cubeState.bl = tmp;
+
+		tmp = cubeState.f;
+		cubeState.f = cubeState.r;
+		cubeState.r = cubeState.b;
+		cubeState.b = cubeState.l;
+		cubeState.l = tmp;
+
+		// 底层
+		Twist_D(), Twist_D(), Twist_D();
+	}
+
 	// ------------------- 魔方组合动作 ------------------- 
 	function changeState(order_list) 
 	{
@@ -261,6 +285,12 @@ solver.logic = function(cube)
 					break;
 				case 'b': 	//b - Back 面逆时针旋转 90°
 					Twist_B(); Twist_B(); Twist_B();
+					break;
+				case 'Y': 	//Y - 整体顺时针旋转 90°
+					Twist_Y();
+					break;
+				case 'y': 	//Y - 整体逆时针旋转 90°
+					Twist_Y(); Twist_Y(); Twist_Y();
 					break;
 			}
 		}
@@ -502,14 +532,15 @@ solver.logic = function(cube)
 
 			if(times == 1) 
 			{
-				if(last - 1 == 0) exp_log = 'u' + step, changeState(exp_log);
-				else if(last - 1 == 1) exp_log = step, changeState(exp_log);
-				else if(last - 1 == 2) exp_log = 'U' + step, changeState(exp_log);
-				else if(last - 1 == 3) exp_log = 'UU' + step, changeState(exp_log);
+				last = (last - 1 + 4) % 4;
+				if(last == 0) exp_log = 'u' + step, changeState(exp_log);
+				else if(last == 1) exp_log = step, changeState(exp_log);
+				else if(last == 2) exp_log = 'U' + step, changeState(exp_log);
+				else if(last == 3) exp_log = 'UU' + step, changeState(exp_log);
 				return Compress(exp_log); // 返回复原公式
 			}
 			// times > 1 说明顶层角块位置本来就是对的，不需要调整
-			else if(times > 1) return exp_log;
+			else if(times > 1) return Compress(exp_log);
 		}
 
 		exp_log = step + 'U' + step;
@@ -520,7 +551,7 @@ solver.logic = function(cube)
 	// ----- 顶角归位（方向） | COMPLETE THE THIRD LAYER CORNERS (ORIENT) -----
 	function THIRD_LAYER_CORNERS_ORI()
 	{
-		console.log('------------ 第五步：顶角归位（方向） | COMPLETE THE THIRD LAYER CORNERS (ORIENT) ------------');
+		console.log('------------ 第六步：顶角归位（方向） | COMPLETE THE THIRD LAYER CORNERS (ORIENT) ------------');
 		var step1 = 'ruRuruuRuu', step2 = 'FUfUFUUfUU', exp_log = '', s = '';	
 		var blocks = ['ulf', 'ufr', 'urb', 'ubl'], uc = cubeState['u'];
 		
@@ -581,8 +612,55 @@ solver.logic = function(cube)
 		console.log(exp_log)
 		return Compress(exp_log); // 返回复原公式
 	}
+
 	// --------------- 顶棱归位 | COMPLETE THE THIRD LAYER EDGES --------------- 
-	
+	function THIRD_LAYER_EDGES()
+	{
+		console.log('------------ 第七步：顶棱归位 | COMPLETE THE THIRD LAYER EDGES ------------')
+		var step1 = 'ruRuruuRuu', step2 = 'FUfUFUUfUU', exp_log = '';
+
+		// 顶层整体方向
+		while(cubeState.ulf[2] != cubeState.f)
+		{
+			changeState('U');
+			exp_log += 'U';
+		}
+		
+		for(var i = 0; i < 3; i++)
+		{
+			var exp = '';
+			var s = cubeState.uf[1] + cubeState.ur[1] + 
+					cubeState.ub[1] + cubeState.ul[1];
+			var c = cubeState.f + cubeState.r + cubeState.b + cubeState.l;
+			
+			var times = 0, pos = -1;
+			for(var j = 0; j < 4; j++)
+				if(s[j] == c[j]) times++, pos = j;
+			
+			// console.log(s, c)
+			// console.log(times, pos)
+
+			// 顶层棱块位置已正确
+			if(times > 1) return Compress(exp_log) // 返回复原公式
+			else if(times == 1)
+			{
+				if(pos == 1) exp += 'Y';
+				else if(pos == 2) exp += 'YY';
+				else if(pos == 3) exp += 'y';
+				
+				if(s[(pos + 1) % 4] == Next_Color[Next_Color[s[pos]]])
+					exp += step1 + step2;
+				else exp += 'y' + step2 + step1;
+			}
+			else exp += step1 + step2;
+
+			exp_log += exp;
+			changeState(exp);
+		}
+
+		console.log('Third Layer Edges Error: ', exp_log);
+		return 'Third Layer Edges Error: ' + exp_log;
+	}
 
 	//  ------------------- 返回魔方复原步骤 ------------------- 
 	function Solve_Cube()
@@ -594,6 +672,7 @@ solver.logic = function(cube)
 		solve_step.push(TOP_CROSS());
 		solve_step.push(THIRD_LAYER_CORNERS_POS());
 		solve_step.push(THIRD_LAYER_CORNERS_ORI());
+		solve_step.push(THIRD_LAYER_EDGES());
 		Execute(solve_step);
 	};
 
@@ -603,13 +682,14 @@ solver.logic = function(cube)
 	{
 		for(var i = 0; i < 10; i++)
 		{
-			order = order.replace(/uU|Uu|dD|Dd|lL|Ll|fF|Ff|rR|Rr|bB|Bb|uuuu|dddd|llll|ffff|rrrr|bbbb|UUUU|DDDD|LLLL|FFFF|RRRR|BBBB/g, '');
+			order = order.replace(/uU|Uu|dD|Dd|lL|Ll|fF|Ff|rR|Rr|bB|Bb|yY|Yy|uuuu|dddd|llll|ffff|rrrr|bbbb|yyyy|UUUU|DDDD|LLLL|FFFF|RRRR|BBBB|YYYY/g, '');
 			order = order.replace(/uuu/g, 'U');
 			order = order.replace(/ddd/g, 'D');
 			order = order.replace(/lll/g, 'L');
 			order = order.replace(/fff/g, 'F');
 			order = order.replace(/rrr/g, 'R');
 			order = order.replace(/bbb/g, 'B');
+			order = order.replace(/yyy/g, 'Y');
 			
 			order = order.replace(/UUU/g, 'u');
 			order = order.replace(/DDD/g, 'd');
@@ -617,6 +697,7 @@ solver.logic = function(cube)
 			order = order.replace(/FFF/g, 'f');
 			order = order.replace(/RRR/g, 'r');
 			order = order.replace(/BBB/g, 'b');
+			order = order.replace(/YYY/g, 'y');
 		}
 		return order;
 	};

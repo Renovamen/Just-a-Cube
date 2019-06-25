@@ -30,7 +30,7 @@ https://renovamen.github.io/Just-a-Cube/
 
 The cube simulator is from [Cuber](https://github.com/marklundin/cube).
 
-### Face and Slice
+### Face
 
                                                Back(B)
                                              -----------
@@ -44,13 +44,17 @@ The cube simulator is from [Cuber](https://github.com/marklundin/cube).
                                           -----------
                                             Down(D)
 
-Standing(S): Rotate according to Front Face's orientation
+&nbsp;
 
-Middle(M): Rotate according to Left Face's orientation
+### Slice
 
-Equator(E): Rotate according to Up Face's orientation
+- **Standing(S):** The layer between F and B
 
+- **Middle(M):** The layer between L and R
 
+- **Equator(E):** The layer between U and D
+
+&nbsp;
 
 ### Default Color
 
@@ -61,21 +65,37 @@ Equator(E): Rotate according to Up Face's orientation
 - Up: Yellow
 - Down: White
 
+&nbsp;
 
+### Rotations
 
-### Twist
+#### Face
 
 A **capital** letter by each face itself means a **clockwise** rotation of the face while a **counterclockwise** turn is marked by a **small** letter.
 
 For example:
 
-U: A quarter clockwise turn on the Up face (90°).
+- **U:** A quarter clockwise turn on the Up face (90°).
 
-u: A quarter counterclockwise turn on the Up face (-90°).
+- **u:** A quarter counterclockwise turn on the Up face (-90°).
 
 ![twist](docs/twist.jpg)
 
+#### Slice
 
+- **S/s:** Rotate slice **S** like a **F/f**
+
+- **M/m:** Rotate slice **M** like a **L/l**
+
+- **E/e:** Rotate slice **E** like an **U/u**
+
+
+
+#### Whole Cube
+
+- **X/x:** Rotate the cube like a **R/r**
+- **Y/y:** Rotate the cube like an **U/u**
+- **Z/z:** Rotate the cube like a **F/f**
 
 &nbsp;
 
@@ -89,7 +109,7 @@ u: A quarter counterclockwise turn on the Up face (-90°).
 - [x] The Top Cross | 顶部十字
 - [x] The Third Layer Corners (Position) | 顶部角块归位（位置）
 - [x] The Third Layer Corners (Orient) | 顶部角块归位（方向）
-- [ ] The Third Layer Edges |  顶部棱块归位
+- [x] The Third Layer Edges |  顶部棱块归位
 
 
 
