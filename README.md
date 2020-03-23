@@ -6,7 +6,7 @@ A rubik's cube solver.
 
 ## Play It
 
-https://renovamen.github.io/Just-a-Cube/
+http://cube.renovamen.ink
 
 &nbsp;
 
