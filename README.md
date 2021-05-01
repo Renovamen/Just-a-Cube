@@ -7,7 +7,7 @@ A rubik's cube solver.
 
 ## Play It
 
-http://cube.renovamen.ink
+http://cube.zxh.io
 
 
 &nbsp;
