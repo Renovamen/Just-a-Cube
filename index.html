@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<title>Just a Cube</title>
 		<meta name="description" content="A rubik's cube solver.">
-		<link rel="icon" type="image/png" href="lib/cuber/media/cube.png">
-		
+		<link rel="icon" type="image/png" href="assets/favicon.svg">
+
 		<!------ FONT ------>
 		<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
 
@@ -14,101 +14,104 @@
 		<link rel="stylesheet" type="text/css" href="cube/css/style.css">
 
 		<!-- cube source code -->
-			<script type="text/javascript" src="lib/cuber/js/vendor/tween.min.js"></script>
-			
-			<!--  Three.js  -->
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/Three.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/core/EventDispatcher.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Math.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Quaternion.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Vector2.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Vector3.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Box3.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Sphere.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Euler.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Matrix3.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Matrix4.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/core/Object3D.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/cameras/Camera.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/cameras/PerspectiveCamera.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Ray.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Plane.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/tween.min.js"></script>
+
+		<!--  Three.js  -->
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/Three.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/core/EventDispatcher.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Math.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Quaternion.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Vector2.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Vector3.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Box3.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Sphere.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Euler.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Matrix3.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Matrix4.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/core/Object3D.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/cameras/Camera.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/cameras/PerspectiveCamera.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Ray.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/threejs/src/math/Plane.js"></script>
 
 
-			<!--  Here are the Cube guts. Enjoy.  -->
-			<script type="text/javascript" src="lib/cuber/js/ERNO.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/vendor/CSS3DRenderer.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/utils/utils.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/utils/Number.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/utils/String.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/utils/Array.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/colors.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/directions.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/queues.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/twists.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/cubelets.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/groups.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/slices.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/folds.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/projector.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/interaction.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/controls.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/cubes.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/solvers.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/renderer.js"></script>
+		<!--  Here are the Cube guts. Enjoy.  -->
+		<script type="text/javascript" src="lib/cuber/js/ERNO.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/vendor/CSS3DRenderer.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/utils/utils.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/utils/Number.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/utils/String.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/utils/Array.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/colors.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/directions.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/queues.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/twists.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/cubelets.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/groups.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/slices.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/folds.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/projector.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/interaction.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/controls.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/cubes.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/solvers.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/renderer.js"></script>
 
-			<!-- implementation -->	
-			<script type="text/javascript" src="lib/cuber/js/jquery-3.4.0.min.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/extras/renderers/iecss3d.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/extras/renderers/ierenderer.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/extras/controls/locked.js"></script>
-			<script type="text/javascript" src="lib/cuber/js/extras/deviceMotion.js"></script>
-		
+		<!-- implementation -->
+		<script type="text/javascript" src="lib/cuber/js/jquery-3.4.0.min.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/extras/renderers/iecss3d.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/extras/renderers/ierenderer.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/extras/controls/locked.js"></script>
+		<script type="text/javascript" src="lib/cuber/js/extras/deviceMotion.js"></script>
+
 		<!-- Two-phase Algorithm  -->
-		<script type="text/javascript" src="lib/cubejs/cube.js"></script>		
+		<script type="text/javascript" src="lib/cubejs/cube.js"></script>
 		<script type="text/javascript" src="lib/cubejs/solve.js"></script>
-		
-		<!-- Typewriting Plugin -->	
+
+		<!-- Typewriting Plugin -->
 		<script type="text/javascript" src="lib/typewriting/typewriting.js"></script>
 
 		<!-- Just a Cube -->
 		<script type="text/javascript" src="cube/js/initial.js"></script>
 		<script type="text/javascript" src="cube/js/util.js"></script>
 		<script type="text/javascript" src="cube/js/lbl.js"></script>
-		<script type="text/javascript" src="cube/js/two-phase.js"></script>	
+		<script type="text/javascript" src="cube/js/two-phase.js"></script>
 	</head>
-	
-	<body class="graydient" >
-		<div class="solve-step">
-			<div class="terminal" id="terminal"></div>
+
+	<body>
+		<div id="container"></div>
+    <div class="type">
+		  <div id="terminal"></div>
 		</div>
-		<div class="solve">
-			<button class="btn solve-btn" onclick="cubeGL.solve()">Solve | LBL</button>
-			<button class="btn solve-btn" onclick="TwoPhase()">Solve | Two-phase</button>
-			<button class="btn solve-btn" onclick="Shuffle()">Shuffle</button>
-			<button class="btn solve-btn" onclick="Reset()">Reset</button>
+    <div class="solve">
+			<button onclick="cubeGL.solve()">Solve | LBL</button>
+			<button onclick="solveTwoPhase()">Solve | Two-phase</button>
+			<button onclick="cubeShuffle()">Shuffle</button>
+			<button onclick="cubeReset()">Reset</button>
+      <a href="https://github.com/Renovamen/Just-a-Cube" target="_blank" rel="noreferrer">
+        <button>Github</button>
+      </a>
 		</div>
-		<div id="container" ></div>
 		<div class="twist">
 			<h1>Rotate</h1>
-			<button class="btn" onclick="cubeGL.twist('U')">U</button>
-			<button class="btn" onclick="cubeGL.twist('u')">u</button><br>
-			<button class="btn" onclick="cubeGL.twist('D')">D</button>
-			<button class="btn" onclick="cubeGL.twist('d')">d</button><br>
-			<button class="btn" onclick="cubeGL.twist('F')">F</button>
-			<button class="btn" onclick="cubeGL.twist('f')">f</button><br>
-			<button class="btn" onclick="cubeGL.twist('B')">B</button>
-			<button class="btn" onclick="cubeGL.twist('b')">b</button><br>
-			<button class="btn" onclick="cubeGL.twist('L')">L</button>
-			<button class="btn" onclick="cubeGL.twist('l')">l</button><br>
-			<button class="btn" onclick="cubeGL.twist('R')">R</button>
-			<button class="btn" onclick="cubeGL.twist('r')">r</button>
-			<button class="btn" onclick="cubeGL.twist('S')">S</button>
-			<button class="btn" onclick="cubeGL.twist('s')">s</button>
-			<button class="btn" onclick="cubeGL.twist('E')">E</button>
-			<button class="btn" onclick="cubeGL.twist('e')">e</button>
-			<button class="btn" onclick="cubeGL.twist('M')">M</button>
-			<button class="btn" onclick="cubeGL.twist('m')">m</button>
+			<button onclick="cubeGL.twist('U')">U</button>
+			<button onclick="cubeGL.twist('u')">u</button><br>
+			<button onclick="cubeGL.twist('D')">D</button>
+			<button onclick="cubeGL.twist('d')">d</button><br>
+			<button onclick="cubeGL.twist('F')">F</button>
+			<button onclick="cubeGL.twist('f')">f</button><br>
+			<button onclick="cubeGL.twist('B')">B</button>
+			<button onclick="cubeGL.twist('b')">b</button><br>
+			<button onclick="cubeGL.twist('L')">L</button>
+			<button onclick="cubeGL.twist('l')">l</button><br>
+			<button onclick="cubeGL.twist('R')">R</button>
+			<button onclick="cubeGL.twist('r')">r</button>
+			<button onclick="cubeGL.twist('S')">S</button>
+			<button onclick="cubeGL.twist('s')">s</button>
+			<button onclick="cubeGL.twist('E')">E</button>
+			<button onclick="cubeGL.twist('e')">e</button>
+			<button onclick="cubeGL.twist('M')">M</button>
+			<button onclick="cubeGL.twist('m')">m</button>
 		</div>
 	</body>
 </html>

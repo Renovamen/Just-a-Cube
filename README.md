@@ -2,11 +2,13 @@
 
 A rubik's cube solver.
 
+
 &nbsp;
 
 ## Play It
 
 http://cube.renovamen.ink
+
 
 &nbsp;
 
@@ -24,6 +26,7 @@ http://cube.renovamen.ink
     └── cuber                       # Rubik's cube simulator
 ```
 
+
 &nbsp;
 
 ## About Cube
@@ -31,6 +34,8 @@ http://cube.renovamen.ink
 The cube simulator is from [Cuber](https://github.com/marklundin/cube).
 
 ### Face
+
+```
 
                                                Back(B)
                                              -----------
@@ -43,16 +48,17 @@ The cube simulator is from [Cuber](https://github.com/marklundin/cube).
                                          |           |/
                                           -----------
                                             Down(D)
+```
+
 
 &nbsp;
 
 ### Slice
 
 - **Standing(S):** The layer between F and B
-
 - **Middle(M):** The layer between L and R
-
 - **Equator(E):** The layer between U and D
+
 
 &nbsp;
 
@@ -64,6 +70,7 @@ The cube simulator is from [Cuber](https://github.com/marklundin/cube).
 - Right: Red
 - Up: Yellow
 - Down: White
+
 
 &nbsp;
 
@@ -79,7 +86,7 @@ For example:
 
 - **u:** A quarter counterclockwise turn on the Up face (-90°).
 
-![twist](docs/twist.jpg)
+![twist](assets/twist.jpg)
 
 #### Slice
 
@@ -89,13 +96,12 @@ For example:
 
 - **E/e:** Rotate slice **E** like an **U/u**
 
-
-
 #### Whole Cube
 
 - **X/x:** Rotate the cube like a **R/r**
 - **Y/y:** Rotate the cube like an **U/u**
 - **Z/z:** Rotate the cube like a **F/f**
+
 
 &nbsp;
 
@@ -111,12 +117,8 @@ For example:
 - [x] The Third Layer Corners (Orient) | 顶部角块归位（方向）
 - [x] The Third Layer Edges |  顶部棱块归位
 
-
-
 ### Two-Phase Algorithm
 
 The JavaScript implentation of [Herbert Kociemba's two-phase algorithm](http://kociemba.org/cube.htm) is from [cube.js](https://github.com/ldez/cubejs).
-
-
 
 ### CFOP
